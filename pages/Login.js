@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {style} from '../components/loginStyle.js'
-import { View, Text, ScaleYTransformtyleSheet, Dimensions, Image, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { View, Text, Dimensions, Image, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 
 const Login = () => {
-    const { width, height } = Dimensions.get('window');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigation = useNavigation();
 
     const handleLogin = () => {
         // Mettez ici votre logique de connexion
@@ -40,7 +41,7 @@ const Login = () => {
                         <Text style={style.buttonText}>CONNEXION</Text>
                     </TouchableOpacity>
                     <Text style={style.textCreate}>Vous n’avez pas de compte ?</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('NomDeVotrePage')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Register')}>
                         <Text style={[style.linkText, {textDecorationLine: 'underline'}]}>Créer-en un !</Text>                    
                     </TouchableOpacity>
                 </View> 
