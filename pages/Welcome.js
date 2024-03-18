@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image } from 'react-native';
-import {style} from '../components/style.js';
+import {style} from '../components/welcomeStyle.js';
 
 const Welcome = () => {
   return (
