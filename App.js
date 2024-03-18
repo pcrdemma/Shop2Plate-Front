@@ -1,12 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
-import Login from './pages/Login.js';
+// import Login from './pages/Login.js';
+import Welcome from './pages/Welcome.js';
 
 const App = () => {
   return (
-    <View style={{ flex: 1 }}>
-      <Login />
-    </View>
+      // <Login />
+      <Welcome />
   );
 };
 
