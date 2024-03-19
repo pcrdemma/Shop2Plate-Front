@@ -66,14 +66,6 @@ const AddStock = () => {
                 <Text style = {style.text}>
                     Date d'ouverture :
                 </Text>
-                {/* <TextInput
-                    style={style.input}
-                    value={expirationDate}
-                    onChangeText={handleDateChange}
-                    placeholder=".../.../..."
-                    maxLength={8}
-                    keyboardType="numeric"
-                /> */}
 
                 <Text style = {style.text}>
                     Durée de conservation après ouverture :
