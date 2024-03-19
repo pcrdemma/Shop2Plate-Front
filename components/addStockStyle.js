@@ -5,9 +5,9 @@ export const style = StyleSheet.create({
         height: '100%',
         width: '100%',
         flex: 1,
-        justifyContent: 'center', 
+        justifyContent: 'center',
         alignContent: 'space-between',
-        backgroundColor: 'white',
+        backgroundColor: 'rgba(132, 174, 78, 0.15)',
         padding: 20,
 
     },
@@ -27,56 +27,55 @@ export const style = StyleSheet.create({
         marginLeft: 10, // Espacement entre l'icône et le texte
     },
 
-    pageTitleContainer:{
+    pageTitleContainer: {
         alignItems: 'center',
         height: 50,
     },
 
-    scanArticleContainer:{
+    scanArticleContainer: {
         padding: 15,
         height: 50,
     },
 
-    cardContainer: {
-        height: 200,
-        flexDirection: 'Column',
-        backgroundColor: 'rgba(132, 174, 78, 0.15)',
-        borderRadius: 10,
-        width: '100%',
-        padding: '10%',
-        
-    },
-
-    label: {
+    text: {
         fontSize: 15,
-        fontWeight: 'normal',
-        marginBottom: 5,
+        marginTop: 10,
+        flexDirection: 'row',
+        // alignItems: 'center',
     },
-    datePickerButton: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        padding: 10,
-    },
-    // containerCard: {
-    //     flexDirection: 'row',
-    //     alignItems: 'center',
-    //     paddingHorizontal: 20,
-    //     paddingVertical: 10,
-    //     backgroundColor: 'rgba(132, 174, 78, 0.15)',
-    //     borderRadius: 10,
-    //     width: '90%',
-    //     marginVertical: 10,
-    // },
-    // titleCard: {
-    //     marginRight: 10,
-    // },
-    // title: {
-    //     fontSize: 20,
-    // },
-    // cardContainer: {
-    //     flex: 1,
-    //     padding: 10,
-    // },
 
+    heading: {
+        fontSize: 18,
+        fontWeight: '600',
+        marginBottom: 20,
+    },
+
+    card: {
+        backgroundColor: 'white',
+        borderRadius: 8,
+        paddingVertical: 45,
+        paddingHorizontal: 25,
+        width: '100%',
+        marginVertical: 10,
+    },
+
+    dropShadow: {
+        shadowColor: '#171717',
+        shadowOffset: { width: -2, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+    },
+    button: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '55%',
+        backgroundColor: 'rgba(132, 174, 78, 0.4)',
+        paddingVertical: 10,
+        paddingHorizontal: 24,
+        marginTop: 50,
+        borderRadius: 5,
+    },
+    buttonText: {
+        fontSize: 17,
+    },
 });
