@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {style} from '../components/loginStyle.js'
-import { View, Text, Dimensions, Image, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 
 const Login = () => {
     const [email, setEmail] = useState('');

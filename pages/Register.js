@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { style } from '../components/registerStyle.js';
 
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, Image,TextInput, Button, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { View, Text, Image,TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
 const Register = () => {
     const [selectedImage, setSelectedImage] = useState(require('../assets/girl.png'));
