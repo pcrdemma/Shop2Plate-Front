@@ -31,6 +31,12 @@ export const style = StyleSheet.create({
         alignItems: 'center',
         height: 50,
     },
+    title:{
+        fontSize: 20,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        width: '100%',
+    },
 
     scanArticleContainer: {
         padding: 15,
