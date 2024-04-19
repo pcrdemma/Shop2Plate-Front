@@ -42,7 +42,17 @@ export const style = StyleSheet.create({
         padding: 15,
         height: 50,
     },
-
+    peremptionScare: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        
+    },
+    openScare:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
     text: {
         fontSize: 15,
         marginTop: 10,
@@ -71,15 +81,20 @@ export const style = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 5,
     },
+    buttonScare:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+        width: '100%',
+    },
+    
     button: {
         justifyContent: 'center',
         alignItems: 'center',
         width: '70%',
         backgroundColor: 'rgba(132, 174, 78, 0.4)',
-        paddingVertical: 10,
-        paddingHorizontal: 24,
-        marginTop: 10,
-        borderRadius: 5,
+        padding: 5,
+        borderRadius: 50,
     },
     buttonText: {
         fontSize: 17,
