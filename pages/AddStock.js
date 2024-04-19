@@ -43,12 +43,12 @@ const AddStock = () => {
 
             {/* Page title */}
             <View style={style.pageTitleContainer}>
-                <Text style={{ fontSize: 25, fontWeight: 'normal' }}>Ajout d'un article dans le stock</Text>
+                <Text style={{ fontSize: 20, fontWeight: 'normal' }}>Ajout d'un article dans le stock</Text>
             </View>
 
             {/* Scan article */}
             <View style={style.scanArticleContainer}>
-                <Text style={{ fontSize: 20, fontWeight: 'normal', color: '#888888' }}>Article scanné</Text>
+                <Text style={{ fontSize: 20, fontWeight: 'normal', color: '#888888',marginBottom:-5 }}>Article scanné</Text>
             </View>
 
             {/* Card */}
