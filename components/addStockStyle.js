@@ -68,14 +68,22 @@ export const style = StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: '55%',
+        width: '70%',
         backgroundColor: 'rgba(132, 174, 78, 0.4)',
         paddingVertical: 10,
         paddingHorizontal: 24,
-        marginTop: 50,
+        marginTop: 10,
         borderRadius: 5,
     },
     buttonText: {
         fontSize: 17,
+    },
+    buttonDate: {
+        backgroundColor: 'rgba(132, 174, 78, 0.4)',
+        padding: 5,
+        borderRadius: 5,
+        marginTop: 10,
+        width: '35%',
+        alignItems: 'center',
     },
 });

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, TextInput } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { style } from '../components/addStockStyle.js';
 import { Ionicons } from '@expo/vector-icons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const AddStock = () => {
     const handleBackPress = () => {
@@ -12,16 +13,23 @@ const AddStock = () => {
         console.log('Add stock button has been pressed');
     };
 
-    
+    const [expirationDate, setExpirationDate] = useState(null);
+    const [showDatePicker, setShowDatePicker] = useState(false);
 
-    const [expirationDate, setExpirationDate] = useState('');
+    const handleDateChange = (event, selectedDate) => {
+        setShowDatePicker(false); // Fermer le sélecteur de date après avoir sélectionné une date
+        if (selectedDate) {
+            setExpirationDate(selectedDate);
+        }
+    };
 
-  const handleDateChange = (text) => {
-    // Vérifiez si la longueur de la chaîne est inférieure ou égale à 8 caractères et si elle ne contient que des chiffres et '/'
-    if (text.length <= 8 && /^[0-9/]*$/.test(text)) {
-      setExpirationDate(text);
-    }
-  };
+    const formatDate = (date) => {
+        if (!date) return '.../.../...';
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    };
 
     return (
         <View style={style.container}>
@@ -50,39 +58,34 @@ const AddStock = () => {
                         Titre article
                     </Text>
                 </View>
-                <Text style = {style.text}>
-                    Date de péremption : 
-                    
-                </Text > 
-                <TextInput
-                    style={style.input}
-                    value={expirationDate}
-                    onChangeText={handleDateChange}
-                    placeholder=".../.../..."
-                    maxLength={8}
-                    keyboardType="numeric"
-                />
-                
-                <Text style = {style.text}>
+                <Text style={style.text}>
+                    Date de péremption :
+                </Text>
+                {showDatePicker && (
+                    <DateTimePicker
+                        value={expirationDate || new Date()}
+                        mode="date"
+                        display="default"
+                        onChange={handleDateChange}
+                    />
+                )}
+                <TouchableOpacity style={style.buttonDate} onPress={() => setShowDatePicker(true)}>
+                    <Text style={style.buttonDateText}>{formatDate(expirationDate)}</Text>
+                </TouchableOpacity>
+
+                <Text style={style.text}>
                     Date d'ouverture :
                 </Text>
 
-                <Text style = {style.text}>
+                <Text style={style.text}>
                     Durée de conservation après ouverture :
                 </Text>
-                {/* <TextInput
-                    style={style.input}
-                    value={expirationDate}
-                    onChangeText={handleDateChange}
-                    placeholder=".../.../..."
-                    maxLength={8}
-                    keyboardType="numeric"
-                /> */}
+
                 <TouchableOpacity style={style.button} onPress={handleAddStock}>
-                        <Text style={style.buttonText}>Ajouter au stock</Text>
-                    </TouchableOpacity>
+                    <Text style={style.buttonText}>Ajouter au stock</Text>
+                </TouchableOpacity>
             </View>
-        </View >
+        </View>
     );
 }
 
