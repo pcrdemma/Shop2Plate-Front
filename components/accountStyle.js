@@ -143,18 +143,18 @@ export const style = StyleSheet.create({
         flexDirection : 'row',
     },
     containerDeco : {
-        paddingTop : 20,
+        paddingTop : 40,
         alignItems : 'center',
     },
     buttonDeco : {
-        height : 30,
+        height : 40,
         justifyContent : 'center',
         borderRadius : 10,
-        width :'50%',
+        width :'60%',
         alignItems : 'center',
         backgroundColor: 'rgba(132, 174, 78, 0.4)',
     },
     buttonTextDeco : {
-        fontSize : 18,
+        fontSize : 20,
     },
 });
