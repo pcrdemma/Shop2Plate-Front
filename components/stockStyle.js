@@ -68,10 +68,6 @@ export const style = StyleSheet.create({
         marginTop: 5, 
         paddingBottom : 10,
     },
-    containerDepensesEffectues: {
-        flexDirection: 'row', // Alignement horizontal
-        justifyContent: 'flex-end', // Alignement à droite
-    },
     depensesEffectues: {
         paddingRight : '5%',
         color : '#727272',
@@ -117,8 +113,8 @@ export const style = StyleSheet.create({
         flexDirection : 'row',
         alignItems : 'center',
         width : '100%',
-        justifyContent : 'space-between',
-        paddingLeft : 20,
+        justifyContent : 'flex-end',
+        paddingRight : 20,
     },
     addArticleContent : {
         backgroundColor : "rgba(132, 174, 78, 0.15)",

@@ -48,9 +48,7 @@ const Stock = () => {
                                 <Text style={style.addArticleText}>Ajouter un article</Text>
                             </View>
                         </TouchableOpacity> 
-                        <View style={style.containerDepensesEffectues}>
-                            <Text style={style.depensesEffectues}>Dépenses effectuées</Text>
-                        </View>
+                        
                     </View>
                     <View style={style.containerTemplate}>
                         <View style={style.containerDepensesTemplate}>
