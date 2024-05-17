@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
 import { style } from '../components/shopingListeStyle.js';
 
 const ShopingList = () => {
-    const [curenteNumber, setCurenteNumber] = useState(5);
+    const [curenteNumber, setCurenteNumber] = useState(8);
     const itemInListe = 10;
 
     const handleBackPress = () => {
@@ -33,6 +33,9 @@ const ShopingList = () => {
                     <Text>Shopping List</Text>
                     <Image style={style.imageTrolly} resizeMode="cover" source={require('../assets/trolly.png')} />
                 </View>
+                <View style={style.titleList}>
+                    <Text>Vous avez dans votre cadie {curenteNumber} article sur {itemInListe}.</Text>
+                </View>
                 <View style={style.progresseBarContent}>
                     <View
                         style={[
@@ -40,13 +43,14 @@ const ShopingList = () => {
                             {
                                 width: `${progressPercentage * 100}%`,
                                 backgroundColor: `rgba(132, 174, 78, ${progressPercentage})`,
+                                
                             },
                         ]}
-                    />
+                        />
+                        <Text style={style.listCuranteNumber}>{curenteNumber}</Text>
+                        <Text style={style.listNumber}>{itemInListe}</Text>
                 </View>
                 <TouchableOpacity onPress={handleIncrement}>
-
-                <Text>{curenteNumber} sur {itemInListe}</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -56,7 +60,9 @@ const ShopingList = () => {
 const styles = StyleSheet.create({
     progress: {
         height: '100%',
+        width: '50%',
         borderRadius: 10,
+        position: 'absolute', 
     },
 });
 

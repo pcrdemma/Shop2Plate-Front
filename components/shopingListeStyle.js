@@ -47,14 +47,30 @@ export const style = StyleSheet.create({
         width: 25,
         height: 25,
     },
+    titleList: {
+        marginTop: 20,
+        width: '100%',
+    },
     progresseBarContent: {
         width: '100%',
         height: 20,
         backgroundColor: 'rgba(132, 174, 78, 0.15)',
         borderRadius: 10,
-        marginTop: 20,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+    },
+
+    listNumber: {
+        fontSize: 15,
+        color: '#000',
+        paddingRight: 10,
+    },
+    listCuranteNumber: {
+        fontSize: 15,
+        color: '#000',
+        paddingLeft: 10,
+        justifyContent: 'flex-end',
+        width: '50%',
     },
 });
