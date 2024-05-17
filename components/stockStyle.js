@@ -100,10 +100,14 @@ export const style = StyleSheet.create({
     containerQuantity: {
         flexDirection : 'row',
         alignItems : 'center',
+        paddingRight : 20,
     },
     date: {
         color : '#AEABAB',
         fontSize : 12,
+    },
+    containerProduct: {
+        paddingTop : 5,
     },
     containerOpen: {
         width : '100%',
@@ -120,5 +124,10 @@ export const style = StyleSheet.create({
         backgroundColor : "rgba(132, 174, 78, 0.15)",
         padding : 8,
         borderRadius : 12,
+    },
+    containerDeleteButton: {
+        paddingBottom : 10,
+        alignItems : 'flex-end',
+        width: '100%',
     }
 });
