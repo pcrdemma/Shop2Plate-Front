@@ -7,6 +7,9 @@ const Budget = () => {
     const handleBackPress = () => {
         console.log('Return button pressed');
     };
+    const handleAddArticle = () => {
+        console.log('Return button pressed');
+    };
 
     const currentMonth = () => {
         const date = new Date();
@@ -42,8 +45,15 @@ const Budget = () => {
                     </View>
                 </View>
                 <View style={[style.containerDepenseBudget, {flex: 6}]}>
-                    <View style={style.containerDepensesEffectues}>
-                        <Text style={style.depensesEffectues}>Dépenses effectuées</Text>
+                    <View style={style.containerButtonDepense}>
+                        <TouchableOpacity onPress={handleAddArticle} style={style.addArticle}>
+                            <View style={style.addArticleContent}>
+                                <Text style={style.addArticleText}>Ajouter une dépense</Text>
+                            </View>
+                        </TouchableOpacity> 
+                        <View style={style.containerDepensesEffectues}>
+                            <Text style={style.depensesEffectues}>Dépenses effectuées</Text>
+                        </View>
                     </View>
                     <View style={style.containerTemplate}>
                         <Text style={style.dateTemplateDepense}>21 juin</Text>
