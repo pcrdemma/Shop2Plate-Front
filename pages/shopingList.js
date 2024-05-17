@@ -1,27 +1,63 @@
-
-import { View, TouchableOpacity, Text } from 'react-native';
+import React, { useState } from 'react';
+import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
 import { style } from '../components/shopingListeStyle.js';
-import { Ionicons } from '@expo/vector-icons';
+
 const ShopingList = () => {
+    const [curenteNumber, setCurenteNumber] = useState(5);
+    const itemInListe = 10;
+
     const handleBackPress = () => {
         console.log('Back button has been pressed');
     };
 
+    const handleIncrement = () => {
+        if (curenteNumber < itemInListe) {
+            setCurenteNumber(curenteNumber + 1);
+        }
+    };
+
+    const progressPercentage = (curenteNumber / itemInListe);
+
     return (
         <View style={style.container}>
-            {/* Back button */}
             <View style={style.backButtonScare}>
                 <TouchableOpacity onPress={handleBackPress} style={style.backButton}>
                     <View style={style.backButtonContent}>
-                        <Ionicons name="arrow-back" size={24} color="black" />
-                            <Text style={style.backButtonText}>Retour</Text>
+                        <Image style={style.imageLogo} resizeMode="cover" source={require('../assets/backArrow.png')} />
+                        <Text style={style.backButtonText}>Retour</Text>
                     </View>
                 </TouchableOpacity>
             </View>
-            <View>
-                <Text>Liste de Course</Text>
+            <View style={style.innerContainer}>
+                <View style={style.shopingListContainerTitle}>
+                    <Text>Shopping List</Text>
+                    <Image style={style.imageTrolly} resizeMode="cover" source={require('../assets/trolly.png')} />
+                </View>
+                <View style={style.progresseBarContent}>
+                    <View
+                        style={[
+                            styles.progress,
+                            {
+                                width: `${progressPercentage * 100}%`,
+                                backgroundColor: `rgba(132, 174, 78, ${progressPercentage})`,
+                            },
+                        ]}
+                    />
+                </View>
+                <TouchableOpacity onPress={handleIncrement}>
+
+                <Text>{curenteNumber} sur {itemInListe}</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    progress: {
+        height: '100%',
+        borderRadius: 10,
+    },
+});
+
 export default ShopingList;

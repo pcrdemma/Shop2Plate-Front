@@ -6,6 +6,7 @@ export const style = StyleSheet.create({
         height: '100%',
         alignContent: 'space-between',
         padding: 20,
+        flexDirection: 'column',
     },
     backButtonScare: {
         flexDirection: 'row',
@@ -13,16 +14,47 @@ export const style = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-        backgroundColor: 'blue',
     },
     backButton: {
         position: 'absolute',
         top: 20,
         left: 10,
-        zIndex: 1,
+        flexDirection: 'row',
     },
     backButtonContent: {
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    imageLogo: {
+        marginRight: 6,
+    },
+    backButtonText: {
+        fontSize: 15,
+        color: '#000',
+    },
+    innerContainer: {
+        flex: 1,
+        top: 50,
+        alignItems: 'center',
+    },
+    shopingListContainerTitle: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+    },
+    imageTrolly: {
+        width: 25,
+        height: 25,
+    },
+    progresseBarContent: {
+        width: '100%',
+        height: 20,
+        backgroundColor: 'rgba(132, 174, 78, 0.15)',
+        borderRadius: 10,
+        marginTop: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
 });
