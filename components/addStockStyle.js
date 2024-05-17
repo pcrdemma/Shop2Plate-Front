@@ -9,7 +9,6 @@ export const style = StyleSheet.create({
         alignContent: 'space-between',
         backgroundColor: 'rgba(132, 174, 78, 0.15)',
         padding: 20,
-
     },
     backButton: {
         marginTop: 40,
