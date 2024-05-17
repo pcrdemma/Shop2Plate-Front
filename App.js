@@ -1,5 +1,6 @@
 // App.js
 import React from 'react';
+import Stock from './pages/Stock.js'
 import Budget from './pages/Budget.js';
 //import Account from './pages/Account.js';
 import { NavigationContainer } from '@react-navigation/native';
@@ -11,7 +12,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Budget" component={Budget} options={{ headerShown: false }} />
+        <Stack.Screen name="Stock" component={Stock} options={{ headerShown: false }} />
+        {/* <Stack.Screen name="Budget" component={Budget} options={{ headerShown: false }} /> */}
         {/* <Stack.Screen name="Account" component={Account} options={{ headerShown: false }} />
         <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
