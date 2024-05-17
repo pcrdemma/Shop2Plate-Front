@@ -90,5 +90,17 @@ export const style = StyleSheet.create({
         flexDirection: 'row', 
         justifyContent: 'space-between', 
         marginTop: 5, 
+    },
+    containerButtonDepense: {
+        flexDirection : 'row',
+        alignItems : 'center',
+        width : '100%',
+        justifyContent : 'space-between',
+        paddingLeft : 20,
+    },
+    addArticleContent : {
+        backgroundColor : "rgba(132, 174, 78, 0.15)",
+        padding : 8,
+        borderRadius : 12,
     }
 });
