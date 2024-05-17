@@ -16,6 +16,9 @@ const Stock = () => {
     const handleAddArticle = () => {
         console.log('Add article button pressed');
     };
+    const handleDelete = () => {
+        console.log('Delete article button pressed');
+    };
 
     return (
         <ScrollView contentContainerStyle={style.container}>
@@ -52,25 +55,35 @@ const Stock = () => {
                     </View>
                     <View style={style.containerTemplate}>
                         <View style={style.containerDepensesTemplate}>
-                            <View style={style.containerFirstLine}>
-                                <View style={style.containerMagasin}>
-                                    <Text style={style.articleName}>Poivron</Text>
-                                </View>
-                                <View style={style.containerQuantity}>
-                                    <TouchableOpacity onPress={handleMoinsPress} style={style.moinsButton}>
-                                        <Image
-                                            source={require('../assets/buttonMoins.png')}
-                                            style={style.image}
-                                        />
-                                    </TouchableOpacity>
-                                    <Text style={style.quantity}>2</Text>
-                                    <TouchableOpacity onPress={handlePlusPress} style={style.plusButton}>
-                                        <Image
-                                            source={require('../assets/buttonPlus.png')}
-                                            style={style.image}
-                                        />
-                                    </TouchableOpacity>
-                                </View>
+                                <View style={style.containerFirstLine}>
+                                    <View style={style.containerProduct}>
+                                        <Text style={style.articleName}>Poivron</Text>
+                                    </View>
+                                    <View style={style.containerButtons}>
+                                        <View style={style.containerDeleteButton}>
+                                            <TouchableOpacity onPress={handleDelete} style={style.deleteButton}>
+                                                <Image
+                                                    source={require('../assets/croix.png')}
+                                                    style={style.image}
+                                                />
+                                            </TouchableOpacity>
+                                        </View>
+                                        <View style={style.containerQuantity}>
+                                            <TouchableOpacity onPress={handleMoinsPress} style={style.moinsButton}>
+                                                <Image
+                                                    source={require('../assets/buttonMoins.png')}
+                                                    style={style.image}
+                                                />
+                                            </TouchableOpacity>
+                                            <Text style={style.quantity}>2</Text>
+                                            <TouchableOpacity onPress={handlePlusPress} style={style.plusButton}>
+                                                <Image
+                                                    source={require('../assets/buttonPlus.png')}
+                                                    style={style.image}
+                                                />
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
                             </View>
                             <View style={style.containerOpen}>
                                 <Text style={style.date}>Ouvert le :</Text>
