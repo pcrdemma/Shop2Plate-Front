@@ -3,6 +3,7 @@ import { View, Image, ScrollView, TouchableOpacity, Animated } from 'react-nativ
 import { useNavigation } from '@react-navigation/native';
 import { style } from '../components/welcomeStyle.js';
 
+
 const Welcome = () => {
   const navigation = useNavigation();
   const fadeAnim = useRef(new Animated.Value(0)).current; 

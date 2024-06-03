@@ -129,5 +129,17 @@ export const style = StyleSheet.create({
         paddingBottom : 10,
         alignItems : 'flex-end',
         width: '100%',
-    }
+    },
+    modalOverlay: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+    },
+    modalContent: {
+        width: '80%',
+        padding: 20,
+        backgroundColor: 'white',
+        borderRadius: 10,
+    },
 });
