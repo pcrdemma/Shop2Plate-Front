@@ -1,6 +1,12 @@
 import { StyleSheet } from 'react-native';
 
 export const style = StyleSheet.create({
+
+    scrollViewContainer: {
+        flexGrow: 1,
+        // backgroundColor: 'rgba(0, 0, 0, 0.3)',
+      },
+
     container: {
         flex: 1,
         justifyContent: 'center',

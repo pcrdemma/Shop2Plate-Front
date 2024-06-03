@@ -1,17 +1,47 @@
-import React from 'react';
-import { View, Image } from 'react-native';
-import {style} from '../components/welcomeStyle.js';
+import React,  { useEffect, useRef  } from 'react';
+import { View, Image, ScrollView, TouchableOpacity, Animated } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { style } from '../components/welcomeStyle.js';
+
 
 const Welcome = () => {
+  const navigation = useNavigation();
+  const fadeAnim = useRef(new Animated.Value(0)).current; 
+
+  useEffect(() => {
+    Animated.timing(
+      fadeAnim,
+      {
+        toValue: 1,
+        duration: 1200, // Durée de l'animation en milliseconds
+        useNativeDriver: true,
+      }
+    ).start();
+
+    const timer = setTimeout(() => {
+      navigation.navigate('Login');
+    }, 2000); 
+
+    return () => clearTimeout(timer); // Clear the timer if component unmounts
+  }, [navigation]);
+
+  const handleScrollToEnd = () => {
+    navigation.navigate('Login');  
+  };
+
   return (
-    <View style={style.container}>
-      <View style={style.innerContainer}>
-        <Image style={style.imageLogo} resizeMode="cover" source={require('../assets/Logo.png')} />
-        <Image style={style.imageTrolly} resizeMode="cover" source={require('../assets/trolly.png')} />
-        <Image style={style.imageArrow} resizeMode="cover" source={require('../assets/arrow.png')} />
+    <ScrollView contentContainerStyle={style.scrollViewContainer}>
+      <View style={style.container}>
+        <View style={style.innerContainer}>
+          <Animated.Image style={[style.imageLogo, { opacity: fadeAnim }]} resizeMode="cover" source={require('../assets/Logo.png')} />
+          <Animated.Image style={[style.imageTrolly, { opacity: fadeAnim }]} resizeMode="cover" source={require('../assets/trolly.png')} />
+          <TouchableOpacity onPress={handleScrollToEnd} style={style.scrollIndicator}>
+            <Image style={style.imageArrow} resizeMode="cover" source={require('../assets/arrow.png')} />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-    
+    </ScrollView>
+
   );
 }
 

@@ -2,99 +2,70 @@ import { StyleSheet } from 'react-native';
 
 export const style = StyleSheet.create({
     container: {
-        height: '100%',
-        width: '100%',
         flex: 1,
         justifyContent: 'center',
-        alignContent: 'space-between',
-        backgroundColor: 'rgba(132, 174, 78, 0.15)',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
         padding: 20,
-
     },
-    backButton: {
-        marginTop: 40,
-        position: 'absolute',
-        top: 20,
-        left: 10,
-        zIndex: 1,
-    },
-    backButtonContent: {
-        flexDirection: 'row', // Alignement horizontal des éléments
-        alignItems: 'center', // Alignement vertical des éléments
-    },
-    backButtonText: {
-        fontSize: 20,
-        marginLeft: 10, // Espacement entre l'icône et le texte
-    },
-
     pageTitleContainer: {
         alignItems: 'center',
-        height: 50,
+        marginBottom: 20,
     },
-    title:{
+    title: {
         fontSize: 20,
-        textAlign: 'center',
         fontWeight: 'bold',
-        width: '100%',
     },
-
     scanArticleContainer: {
-        padding: 15,
-        height: 50,
+        marginBottom: 20,
     },
-    peremptionScare: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        
+    card: {
+        backgroundColor: 'white',
+        borderRadius: 8,
+        padding: 20,
+        width: '100%',
+        maxWidth: 400,
     },
-    openScare:{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    text: {
-        fontSize: 15,
-        marginTop: 10,
-        flexDirection: 'row',
-        // alignItems: 'center',
-    },
-
     heading: {
         fontSize: 18,
         fontWeight: '600',
         marginBottom: 20,
     },
-
-    card: {
-        backgroundColor: 'white',
-        borderRadius: 8,
-        paddingVertical: 45,
-        paddingHorizontal: 25,
-        width: '100%',
-        marginVertical: 10,
+    peremptionScare: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 10,
     },
-
-    dropShadow: {
-        shadowColor: '#171717',
-        shadowOffset: { width: -2, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 5,
+    openScare: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 10,
     },
-    buttonScare:{
+    text: {
+        fontSize: 15,
+    },
+    buttonDate: {
+        backgroundColor: 'rgba(132, 174, 78, 0.4)',
+        padding: 5,
+        borderRadius: 5,
+    },
+    buttonDateText: {
+        fontSize: 15,
+    },
+    buttonScare: {
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20,
-        width: '100%',
     },
-    
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: '70%',
         backgroundColor: 'rgba(132, 174, 78, 0.4)',
-        padding: 5,
-        borderRadius: 50,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 20,
     },
     buttonText: {
         fontSize: 17,
@@ -107,4 +78,17 @@ export const style = StyleSheet.create({
         width: '35%',
         alignItems: 'center',
     },
+    closeImage: {
+        width : 15,
+        height : 15,
+    },
+    articleTitleInput: {
+        fontSize : 20,
+    },
+    containerDureeConservation: {
+        flexDirection : 'row',
+    },
+    dureeConservationInput: {
+        paddingLeft : 10        ,
+    }
 });
