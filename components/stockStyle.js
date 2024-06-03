@@ -59,6 +59,11 @@ export const style = StyleSheet.create({
     unite: {
         color : '#AEABAB',
     },
+    depensesEffectues: {
+        paddingRight : '5%',
+        color : '#727272',
+        fontSize : 18,
+    },
     containerSecondLine: {
         flexDirection: 'row', 
         width : '100%',
@@ -67,11 +72,6 @@ export const style = StyleSheet.create({
         paddingRight : 10,
         marginTop: 5, 
         paddingBottom : 10,
-    },
-    depensesEffectues: {
-        paddingRight : '5%',
-        color : '#727272',
-        fontSize : 18,
     },
     containerTemplate: {
         padding : 10,
