@@ -1,37 +1,57 @@
 import React, { useState } from 'react';
 import { style } from '../components/registerStyle.js';
-
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, Image,TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
 const Register = () => {
     const [selectedImage, setSelectedImage] = useState(require('../assets/girl.png'));
     const [isMale, setIsMale] = useState(false);
-
-    // Méthode appelée lorsque l'utilisateur sélectionne une image
-    const handleImageSelection = (image, gender) => {
-        setSelectedImage(image);
-        setIsMale(gender);
-    };
     const [email, setEmail] = useState('');
     const [prenom, setPrenom] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
-    
     const navigation = useNavigation();
 
-    const handleLogin = () => {
-        // Mettez ici votre logique de connexion
-        console.log('Login button pressed');
+    const handleImageSelection = (image, gender) => {
+        setSelectedImage(image);
+        setIsMale(gender);
     };
 
-    // Méthode appelée lorsque l'utilisateur change de photo
     const handleChangePhoto = () => {
         if (selectedImage === require('../assets/girl.png')) {
             handleImageSelection(require('../assets/boy.png'), true);
         } else {
             handleImageSelection(require('../assets/girl.png'), false);
         }
+    };
+
+    const handleRegister = () => {
+        fetch('https://shop2plate-back.onrender.com/users/addUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                firstname: prenom,
+                lastname: name,
+                email: email,
+                password: password,
+                sexe: isMale ? 'male' : 'female',
+                price: 0,
+                isChecked: true,
+            }),
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Utilisateur inscrit avec succès');
+                // Vous pouvez naviguer vers une autre page ici si nécessaire
+            } else {
+                console.error('Erreur lors de l\'inscription');
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la requête d\'inscription:', error);
+        });
     };
 
     return (
@@ -78,13 +98,13 @@ const Register = () => {
                         autoCapitalize="none"
                     />
                     <TextInput
-                        style={[style.input, {backgroundColor: '#fff', paddingLeft: 10}]} // Ajout de paddingLeft
+                        style={[style.input, {backgroundColor: '#fff', paddingLeft: 10}]} 
                         placeholder="Mot de passe"
                         onChangeText={setPassword}
                         value={password}
                         secureTextEntry={true}
                     />
-                    <TouchableOpacity style={style.button} onPress={handleLogin}>
+                    <TouchableOpacity style={style.button} onPress={handleRegister}>
                         <Text style={style.buttonText}>INSCRIPTION</Text>
                     </TouchableOpacity>
                     <Text style={style.textCreate}>Vous avez déjà un compte ?</Text>
