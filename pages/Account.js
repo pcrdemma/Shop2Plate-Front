@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, Dimensions, Image, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -19,11 +19,34 @@ const Account = () => {
     const handleBackPress = () => {
         console.log('Return button pressed');
     };
+
     const handleDeconnexion = () => {
-        // Mettez ici votre logique de connexion
+        // Mettez ici votre logique de déconnexion
         console.log('Deconnexion button pressed');
     };
 
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                // Effectuer une requête pour récupérer les données du compte
+                const response = await fetch('https://shop2plate-back.onrender.com/users//user/:id');
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la récupération des données du compte');
+                }
+                const userData = await response.json();
+                // Mettre à jour le state avec les données récupérées
+                setEmail(userData.email);
+                setPrenom(userData.prenom);
+                setBudget(userData.budget);
+                setRevenu(userData.revenu);
+            } catch (error) {
+                console.error('Erreur lors de la récupération des données du compte:', error.message);
+                // Traitez l'erreur, affichez un message à l'utilisateur, etc.
+            }
+        };
+
+        fetchUserData();
+    }, []);
     return (
         <ScrollView>
             <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
@@ -37,7 +60,7 @@ const Account = () => {
     
                     <View style={style.account}>
                         <Image style={style.exchange} source={require('../assets/girl.png')} />
-                        <Text style={style.text}>Prénom</Text>
+                        <Text style={style.text}>{prenom}</Text>
                         <View style={style.inputContainer}>
                     <TextInput
                         style={[style.input, {backgroundColor: '#fff'}]}

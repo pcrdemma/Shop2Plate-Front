@@ -26,11 +26,10 @@ const Login = () => {
             return response.json();
         })
         .then(data => {
-            
             if (data.rowCount > 0) {
-                navigation.navigate('Register'); 
-            } else {
                 Alert.alert('Connexion réussie', 'Bienvenue 😊');
+            } else {
+                navigation.navigate('Account' , {user: data});
             }
         })
         .catch(error => {
