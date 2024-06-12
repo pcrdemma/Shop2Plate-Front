@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import {style} from '../components/loginStyle.js'
-import { View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { style } from '../components/loginStyle.js';
+import { View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity, Alert } from 'react-native';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -9,8 +9,33 @@ const Login = () => {
     const navigation = useNavigation();
 
     const handleLogin = () => {
-        // Mettez ici votre logique de connexion
-        console.log('Login button pressed');
+        const query = `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
+        fetch(`https://shop2plate-back.onrender.com/users/login?${query}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => {
+            if (response.status === 404) {
+                throw new Error('Compte inexistant');
+            }
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text) });
+            }
+            return response.json();
+        })
+        .then(data => {
+            
+            if (data.rowCount > 0) {
+                navigation.navigate('Register'); 
+            } else {
+                Alert.alert('Connexion réussie', 'Bienvenue 😊');
+            }
+        })
+        .catch(error => {
+            Alert.alert('Erreur lors de la connexion', 'Email ou mot de passe incorrect, ou inscrivez-vous 😊');
+        });
     };
 
     return (
@@ -31,7 +56,7 @@ const Login = () => {
                         autoCapitalize="none"
                     />
                     <TextInput
-                        style={[style.input, {backgroundColor: '#fff', paddingLeft: 10}]} // Ajout de paddingLeft
+                        style={[style.input, {backgroundColor: '#fff', paddingLeft: 10}]}
                         placeholder="Mot de passe"
                         onChangeText={setPassword}
                         value={password}
