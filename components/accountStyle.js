@@ -116,7 +116,6 @@ export const style = StyleSheet.create({
         alignItems : 'center',
         fontStyle : 'italic',
     },
-   
     inputRevenu : {
         width : '100%',
     },
