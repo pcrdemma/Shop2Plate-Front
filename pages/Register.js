@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { ScrollView, View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, StyleSheet } from 'react-native';
-import { CheckBox } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { style } from '../components/registerStyle.js';
 import { RadioButton } from 'react-native-paper';
-
 
 const Register = () => {
     const [selectedImage, setSelectedImage] = useState(require('../assets/girl.png'));
@@ -42,7 +40,6 @@ const Register = () => {
 
     const handleBackPress = () => {
         console.log('Return button pressed');
-
     };
 
     const handleChangePhoto = () => {
@@ -51,35 +48,6 @@ const Register = () => {
         } else {
             handleImageSelection(require('../assets/girl.png'), false);
         }
-    };
-
-    const handleRegister = () => {
-        fetch('https://shop2plate-back.onrender.com/users/addUser', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                firstname: prenom,
-                lastname: name,
-                email: email,
-                password: password,
-                sexe: isMale ? 'male' : 'female',
-                price: 0,
-                isChecked: true,
-            }),
-        })
-        .then(response => {
-            if (response.ok) {
-                console.log('Utilisateur inscrit avec succès');
-                // Vous pouvez naviguer vers une autre page ici si nécessaire
-            } else {
-                console.error('Erreur lors de l\'inscription');
-            }
-        })
-        .catch(error => {
-            console.error('Erreur lors de la requête d\'inscription:', error);
-        });
     };
 
     return (
@@ -221,7 +189,6 @@ const Register = () => {
                 </View>
             </KeyboardAvoidingView>
         </ScrollView>
-
     );
 };
 

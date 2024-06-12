@@ -2,7 +2,7 @@
 import React from 'react';
 
 
-import Register from './pages/Register.js';
+
 import Stock from './pages/Stock.js'
 import Budget from './pages/Budget.js';
 import Register from './pages/Register.js';
