@@ -7,7 +7,6 @@ import Stock from './pages/Stock';
 import Budget from './pages/Budget';
 import Account from './pages/Account';
 import ShopingList from './pages/ShopingList';
-import AddDepense from './pages/AddDepense';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +32,7 @@ export default function App() {
               iconSource = focused
               ? require('./assets/panierNav.png')
               : require('./assets/panierNav.png');
-            } else if (route.name === 'AddDepense') {
+            } else if (route.name === 'Account') {
               iconSource = focused
                 ? require('./assets/userNav.png')
                 : require('./assets/userNav.png');
@@ -54,7 +53,7 @@ export default function App() {
         <Tab.Screen name="Budget" component={Budget} />
         <Tab.Screen name="Stock" component={Stock} />
         <Tab.Screen name="ShopingList" component={ShopingList} />
-        <Tab.Screen name="AddDepense" component={AddDepense} />
+        <Tab.Screen name="Account" component={Account} />
       </Tab.Navigator>
     </NavigationContainer>
   );
