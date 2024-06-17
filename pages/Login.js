@@ -26,15 +26,14 @@ const Login = () => {
             return response.json();
         })
         .then(data => {
-            
             if (data.rowCount > 0) {
-                navigation.navigate('Register'); 
-            } else {
                 Alert.alert('Connexion réussie', 'Bienvenue 😊');
+            } else {
+                navigation.navigate('Account');
             }
         })
         .catch(error => {
-            Alert.alert('Erreur lors de la connexion', 'Email ou mot de passe incorrect, ou inscrivez-vous 😊');
+            Alert.alert('Erreur lors de la connexion', 'Email ou mot de passe incorrect,  avez-vous creé un compte ? 😊');
         });
     };
 
