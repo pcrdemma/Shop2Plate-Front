@@ -29,11 +29,11 @@ const Login = () => {
             if (data.rowCount > 0) {
                 Alert.alert('Connexion réussie', 'Bienvenue 😊');
             } else {
-                navigation.navigate('Account' , {user: data});
+                navigation.navigate('Account');
             }
         })
         .catch(error => {
-            Alert.alert('Erreur lors de la connexion', 'Email ou mot de passe incorrect, ou inscrivez-vous 😊');
+            Alert.alert('Erreur lors de la connexion', 'Email ou mot de passe incorrect,  avez-vous creé un compte ? 😊');
         });
     };
 

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { View, Text, Dimensions, Image, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { CheckBox } from 'react-native-elements';
 import { style } from '../components/accountStyle.js';
-import { ScrollView } from 'react-native';
 
 const Account = () => {
     const [email, setEmail] = useState('');
@@ -15,21 +14,22 @@ const Account = () => {
     const [budget, setBudget] = useState('');
     const [revenu, setRevenu] = useState('');
     const navigation = useNavigation();
+    const route = useRoute();
+    const { userId } = route.params; // Get the user ID from the route params
 
     const handleBackPress = () => {
         console.log('Return button pressed');
     };
 
     const handleDeconnexion = () => {
-        // Mettez ici votre logique de déconnexion
         console.log('Deconnexion button pressed');
     };
 
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                // Effectuer une requête pour récupérer les données du compte
-                const response = await fetch('https://shop2plate-back.onrender.com/users//user/:id');
+                // Effectuer une requête pour récupérer les données du compte en utilisant l'ID de l'utilisateur
+                const response = await fetch(`https://shop2plate-back.onrender.com/users/user/${userId}`);
                 if (!response.ok) {
                     throw new Error('Erreur lors de la récupération des données du compte');
                 }
@@ -46,7 +46,8 @@ const Account = () => {
         };
 
         fetchUserData();
-    }, []);
+    }); // Ajout de userId comme dépendance pour s'assurer que fetchUserData est appelée lorsque userId change
+
     return (
         <ScrollView>
             <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
@@ -57,28 +58,28 @@ const Account = () => {
                             <Text style={style.backButtonText}>Retour</Text>
                         </View>
                     </TouchableOpacity>
-    
+
                     <View style={style.account}>
                         <Image style={style.exchange} source={require('../assets/girl.png')} />
                         <Text style={style.text}>{prenom}</Text>
                         <View style={style.inputContainer}>
-                    <TextInput
-                        style={[style.input, {backgroundColor: '#fff'}]}
-                        placeholder="Prénom"
-                        onChangeText={setPrenom}
-                        value={prenom}
-                        keyboardType="default"
-                        autoCapitalize="none"
-                    />
-                    <TextInput
-                        style={[style.input, {backgroundColor: '#fff'}]}
-                        placeholder="Email"
-                        onChangeText={setEmail}
-                        value={email}
-                        keyboardType="email-address"
-                        autoCapitalize="none"
-                    />
-                </View> 
+                            <TextInput
+                                style={[style.input, {backgroundColor: '#fff'}]}
+                                placeholder="Prénom"
+                                onChangeText={setPrenom}
+                                value={prenom}
+                                keyboardType="default"
+                                autoCapitalize="none"
+                            />
+                            <TextInput
+                                style={[style.input, {backgroundColor: '#fff'}]}
+                                placeholder="Email"
+                                onChangeText={setEmail}
+                                value={email}
+                                keyboardType="email-address"
+                                autoCapitalize="none"
+                            />
+                        </View>
 
                         <View>
                             <Text style={style.modif}>Modifier le mot de passe 🔐</Text>
@@ -124,7 +125,7 @@ const Account = () => {
                                     <View style={style.containerMax}>
                                         <Text style={style.max}>Maximum</Text>
                                     </View>
-                                    <View style = {style.containerInputMaximum}>
+                                    <View style={style.containerInputMaximum}>
                                         <View style={style.containerInputMax}>
                                             <TextInput
                                                 style={[style.inputMaximum, {backgroundColor: '#fff'}]}
@@ -152,7 +153,7 @@ const Account = () => {
                                     />
                                     <Text style={style.checkboxLabel}>Budget calculé</Text>
                                 </View>
-                                    <Text style={style.tipsBudget}>budget course géré en fonction de votre paie, soit 18% de la somme</Text>
+                                <Text style={style.tipsBudget}>budget course géré en fonction de votre paie, soit 18% de la somme</Text>
                                 <View style={style.twoRectangle}>
                                     <View style={style.rectangleRevenu}>
                                         <View style={style.containerInputMax}>
@@ -175,7 +176,7 @@ const Account = () => {
                             </View>
                             <View style={style.containerDeco}>
                                 <TouchableOpacity style={style.buttonDeco} onPress={handleDeconnexion}>
-                                                <Text style={style.buttonTextDeco}>DECONNEXION</Text>
+                                    <Text style={style.buttonTextDeco}>DECONNEXION</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -183,7 +184,7 @@ const Account = () => {
                 </View>
             </KeyboardAvoidingView>
         </ScrollView>
-        );
+    );
 };
 
 export default Account;
