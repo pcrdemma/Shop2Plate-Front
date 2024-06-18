@@ -1,30 +1,62 @@
 import React, { useState } from 'react';
-import { View, Text, Image, ScrollView, TouchableOpacity, Modal, Button } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { style } from '../components/stockStyle.js';
-// Supprimez l'importation de AddStock car vous n'utiliserez plus ce composant ici
 import AddStock from './AddStock.js';
 
 const Stock = () => {
     const [modalVisible, setModalVisible] = useState(false);
+    const [articles, setArticles] = useState([
+        {
+            id: 1,
+            name: 'Poivron',
+            quantity: 2,
+            openDate: '10/06/2024',
+            expirationDate: '20/06/2024'
+        }
+    ]);
 
     const handleBackPress = () => {
-        console.log('Return button pressed');
+        console.log('Bouton retour pressé');
     };
-    const handleMoinsPress = () => {
-        console.log('Moins button pressed');
+
+    const handleMoinsPress = (id) => {
+        setArticles(prevArticles =>
+            prevArticles.map(article =>
+                article.id === id && article.quantity > 0
+                    ? { ...article, quantity: article.quantity - 1 }
+                    : article
+            )
+        );
     };
-    const handlePlusPress = () => {
-        console.log('Plus button pressed');
+
+    const handlePlusPress = (id) => {
+        setArticles(prevArticles =>
+            prevArticles.map(article =>
+                article.id === id
+                    ? { ...article, quantity: article.quantity + 1 }
+                    : article
+            )
+        );
     };
+
     const handleAddArticle = () => {
         setModalVisible(true);
     };
-    const handleDelete = () => {
-        console.log('Delete article button pressed');
+
+    const handleDelete = (id) => {
+        setArticles(prevArticles =>
+            prevArticles.filter(article => article.id !== id)
+        );
     };
+
     const handleCloseModal = () => {
         setModalVisible(false);
+    };
+
+    const handleAddStock = (newArticle) => {
+        setArticles(prevArticles => [...prevArticles, newArticle]);
+        handleCloseModal();
     };
 
     return (
@@ -34,15 +66,15 @@ const Stock = () => {
                     <Ionicons name="arrow-back" size={24} color="black" />
                     <Text style={style.backButtonText}>Retour</Text>
                 </View>
-            </TouchableOpacity> 
+            </TouchableOpacity>
             <View style={style.title}>
-                <Text style={style.titleBudget}>Stock de course 🛒</Text>
+                <Text style={style.titleBudget}>Stock de courses 🛒</Text>
             </View>
-            <View style={[style.containermonth,{ flex: 1}]}>
+            <View style={[style.containermonth, { flex: 1 }]}>
                 <Text style={style.articleScan}>Articles ajoutés</Text>
                 <View style={[style.containerProgressionBar]}>
                     <View style={style.progressionbar}>
-                        <Text style={style.depense}>4</Text>
+                        <Text style={style.depense}>{articles.length}</Text>
                     </View>
                 </View>
                 <View style={style.containerPrice}>
@@ -51,59 +83,61 @@ const Stock = () => {
                     </View>
                 </View>
             </View>
-            <View style={[style.containerDepenseBudget, {flex: 6}]}>
+            <View style={[style.containerDepenseBudget, { flex: 6 }]}>
                 <View style={style.containerButtonDepense}>
                     <TouchableOpacity onPress={handleAddArticle} style={style.addArticle}>
                         <View style={style.addArticleContent}>
                             <Text style={style.addArticleText}>Ajouter un article</Text>
                         </View>
-                    </TouchableOpacity> 
+                    </TouchableOpacity>
                 </View>
-                <View style={style.containerTemplate}>
-                    <View style={style.containerDepensesTemplate}>
-                        <View style={style.containerFirstLine}>
-                            <View style={style.containerProduct}>
-                                <Text style={style.articleName}>Poivron</Text>
-                            </View>
-                            <View style={style.containerButtons}>
-                                <View style={style.containerDeleteButton}>
-                                    <TouchableOpacity onPress={handleDelete} style={style.deleteButton}>
-                                        <Image
-                                            source={require('../assets/croix.png')}
-                                            style={style.image}
-                                        />
-                                    </TouchableOpacity>
+                {articles.map((article) => (
+                    <View key={article.id} style={style.containerTemplate}>
+                        <View style={style.containerDepensesTemplate}>
+                            <View style={style.containerFirstLine}>
+                                <View style={style.containerProduct}>
+                                    <Text style={style.articleName}>{article.name}</Text>
                                 </View>
-                                <View style={style.containerQuantity}>
-                                    <TouchableOpacity onPress={handleMoinsPress} style={style.moinsButton}>
-                                        <Image
-                                            source={require('../assets/buttonMoins.png')}
-                                            style={style.image}
-                                        />
-                                    </TouchableOpacity>
-                                    <Text style={style.quantity}>2</Text>
-                                    <TouchableOpacity onPress={handlePlusPress} style={style.plusButton}>
-                                        <Image
-                                            source={require('../assets/buttonPlus.png')}
-                                            style={style.image}
-                                        />
-                                    </TouchableOpacity>
+                                <View style={style.containerButtons}>
+                                    <View style={style.containerDeleteButton}>
+                                        <TouchableOpacity onPress={() => handleDelete(article.id)} style={style.deleteButton}>
+                                            <Image
+                                                source={require('../assets/croix.png')}
+                                                style={style.image}
+                                            />
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={style.containerQuantity}>
+                                        <TouchableOpacity onPress={() => handleMoinsPress(article.id)} style={style.moinsButton}>
+                                            <Image
+                                                source={require('../assets/buttonMoins.png')}
+                                                style={style.image}
+                                            />
+                                        </TouchableOpacity>
+                                        <Text style={style.quantity}>{article.quantity}</Text>
+                                        <TouchableOpacity onPress={() => handlePlusPress(article.id)} style={style.plusButton}>
+                                            <Image
+                                                source={require('../assets/buttonPlus.png')}
+                                                style={style.image}
+                                            />
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
                             </View>
-                        </View>
-                        <View style={style.containerOpen}>
-                            <Text style={style.date}>Ouvert le :</Text>
-                        </View>
-                        <View style={style.containerSecondLine}>
-                            <View style={style.containerZero}>
-                                <Text style={style.date}>Périme le :</Text>
+                            <View style={style.containerOpen}>
+                                <Text style={style.date}>Ouvert le : {article.openDate}</Text>
                             </View>
-                            <View style={style.containerBud}>
-                                <Text style={style.date}>À consommer avant le :</Text>
+                            <View style={style.containerSecondLine}>
+                                <View style={style.containerZero}>
+                                    <Text style={style.date}>Périme le : {article.expirationDate}</Text>
+                                </View>
+                                <View style={style.containerBud}>
+                                    <Text style={style.date}>À consommer avant le : {article.expirationDate}</Text>
+                                </View>
                             </View>
                         </View>
                     </View>
-                </View>
+                ))}
             </View>
             <Modal
                 animationType="slide"
@@ -111,7 +145,7 @@ const Stock = () => {
                 visible={modalVisible}
                 onRequestClose={handleCloseModal}
             >
-                 <AddStock onClose={handleCloseModal} />
+                <AddStock onClose={handleCloseModal} onAddStock={handleAddStock} />
             </Modal>
         </ScrollView>
     );

@@ -1,43 +1,61 @@
-// App.js
-import React from 'react';
 
-import Welcome from './pages/Welcome.js';
-import Login from './pages/Login.js';
-import Register from './pages/Register.js';
-import Account from './pages/Account.js';
-
-
-import Stock from './pages/Stock.js'
-import Budget from './pages/Budget.js';
-import AddStock from './pages/AddStock.js';
-
-
-import { createStackNavigator } from '@react-navigation/stack';
+import * as React from 'react';
+import { View, Image } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
+import Stock from './pages/Stock';
+import Budget from './pages/Budget';
+import Account from './pages/Account';
+import ShopingList from './pages/ShopingList';
 
+const Tab = createBottomTabNavigator();
 
-const Stack = createStackNavigator();
-
-const App = () => {
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
-        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} /> 
-        <Stack.Screen name="Register" component={Register} options={{ headerShown: false }}/>
+      <Tab.Navigator
+        initialRouteName="Budget"
+        screenOptions={({ route }) => ({
+          headerShown: false,
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconSource;
 
-        {/* <Stack.Screen name="Stock" component={Stock} options={{ headerShown: false }} /> */}
-        {/* <Stack.Screen name="Budget" component={Budget} options={{ headerShown: false }} /> */}
-        <Stack.Screen name="Account" component={Account} options={{ headerShown: false }} />
+            if (route.name === 'Budget') {
+              iconSource = focused
+                ? require('./assets/moneyNav.png')
+                : require('./assets/moneyNav.png');
+            } else if (route.name === 'Stock') {
+              iconSource = focused
+                ? require('./assets/frigoNav.png')
+                : require('./assets/frigoNav.png');
+            } else if (route.name === 'ShopingList') {
+              iconSource = focused
+              ? require('./assets/panierNav.png')
+              : require('./assets/panierNav.png');
+            } else if (route.name === 'Account') {
+              iconSource = focused
+                ? require('./assets/userNav.png')
+                : require('./assets/userNav.png');
+            }
 
-{/*      <Stack.Navigator mode="modal">
-         <Stack.Screen name="Stock" component={Stock} options={{ headerShown: false }} />
-         <Stack.Screen name="Budget" component={Budget} options={{ headerShown: false }} />
-         <Stack.Screen name="AddStock" component={AddStock} options={{ headerShown: false, presentation: 'modal' }} /> */}
-
-      </Stack.Navigator>
+            return <Image source={iconSource} style={{ width: 24, height: 24 }} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+          tabBarStyle: {
+            backgroundColor: '#fff',
+            borderTopColor: 'transparent',
+            elevation: 0, // for Android
+            shadowOpacity: 0.3, // for iOS
+          },
+        })}
+      >
+        <Tab.Screen name="Budget" component={Budget} />
+        <Tab.Screen name="Stock" component={Stock} />
+        <Tab.Screen name="ShopingList" component={ShopingList} />
+        <Tab.Screen name="Account" component={Account} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
-};
-
-export default App;
+}
