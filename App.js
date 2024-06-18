@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Stock from './pages/Stock';
 import Budget from './pages/Budget';
 import Account from './pages/Account';
-import ShopingList from './pages/ShopingList';
+import ShoppingList from './pages/ShoppingList';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +28,7 @@ export default function App() {
               iconSource = focused
                 ? require('./assets/frigoNav.png')
                 : require('./assets/frigoNav.png');
-            } else if (route.name === 'ShopingList') {
+            } else if (route.name === 'ShoppingList') {
               iconSource = focused
               ? require('./assets/panierNav.png')
               : require('./assets/panierNav.png');
@@ -52,7 +52,7 @@ export default function App() {
       >
         <Tab.Screen name="Budget" component={Budget} />
         <Tab.Screen name="Stock" component={Stock} />
-        <Tab.Screen name="ShopingList" component={ShopingList} />
+        <Tab.Screen name="ShoppingList" component={ShoppingList} />
         <Tab.Screen name="Account" component={Account} />
       </Tab.Navigator>
     </NavigationContainer>
