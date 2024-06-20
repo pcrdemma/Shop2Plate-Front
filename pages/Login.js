@@ -3,10 +3,11 @@ import { useNavigation } from '@react-navigation/native';
 import { style } from '../components/loginStyle.js';
 import { View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity, Alert } from 'react-native';
 
-const Login = () => {
+const Login = ({ route }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigation = useNavigation();
+    const { setIsAuthenticated } = route.params;
 
     const handleLogin = () => {
         const query = `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
@@ -30,6 +31,7 @@ const Login = () => {
             if (data.rowCount > 0) {
                 Alert.alert('Connexion réussie', 'Bienvenue 😊');
             } else {
+                setIsAuthenticated(true);
                 navigation.navigate('Account'); 
             }
         })

@@ -52,12 +52,6 @@ const Account = () => {
         <ScrollView>
             <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
                 <View style={style.container}>
-                    <TouchableOpacity onPress={handleBackPress} style={style.backButton}>
-                        <View style={style.backButtonContent}>
-                            <Ionicons name="arrow-back" size={24} color="black" />
-                            <Text style={style.backButtonText}>Retour</Text>
-                        </View>
-                    </TouchableOpacity>
 
                     <View style={style.account}>
                         <Image style={style.exchange} source={require('../assets/girl.png')} />
