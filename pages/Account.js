@@ -26,9 +26,27 @@ const Account = () => {
     const handleDeconnexion = () => {
         console.log('Deconnexion button pressed');
     };
-    const handleSuppr = () => {
-        // Mettez ici votre logique de suppression de compte
-        console.log('Supprimer button pressed');
+    const handleSuppr = async () => {
+        try {
+            const response = await fetch('https://shop2plate-back.onrender.com/users/deleteUser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: userId }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Erreur lors de la suppression du compte');
+            }
+
+            Alert.alert('Succès', 'Compte supprimé avec succès', [
+                { text: 'OK', onPress: () => navigation.navigate('Register') },
+            ]);
+        } catch (error) {
+            console.error('Erreur lors de la suppression du compte:', error.message);
+            Alert.alert('Erreur', 'Une erreur est survenue lors de la suppression du compte');
+        }
     };
 
     // useEffect(() => {
