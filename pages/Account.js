@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { style } from '../components/accountStyle.js';
@@ -15,18 +15,44 @@ const Account = () => {
     const [revenu, setRevenu] = useState('');
     const navigation = useNavigation();
     const [isBudgetDefiniSelected, setIsBudgetDefiniSelected] = useState(false);
+    const route = useRoute();
+    // const { userId } = route.params; // Get the user ID from the route params
+
 
     const handleBackPress = () => {
         console.log('Return button pressed');
     };
+
     const handleDeconnexion = () => {
-        // Mettez ici votre logique de déconnexion
         console.log('Deconnexion button pressed');
     };
     const handleSuppr = () => {
         // Mettez ici votre logique de suppression de compte
         console.log('Supprimer button pressed');
     };
+
+    // useEffect(() => {
+    //     const fetchUserData = async () => {
+    //         try {
+    //             // Effectuer une requête pour récupérer les données du compte en utilisant l'ID de l'utilisateur
+    //             const response = await fetch(`https://shop2plate-back.onrender.com/users/user/${userId}`);
+    //             if (!response.ok) {
+    //                 throw new Error('Erreur lors de la récupération des données du compte');
+    //             }
+    //             const userData = await response.json();
+    //             // Mettre à jour le state avec les données récupérées
+    //             setEmail(userData.email);
+    //             setPrenom(userData.prenom);
+    //             setBudget(userData.budget);
+    //             setRevenu(userData.revenu);
+    //         } catch (error) {
+    //             console.error('Erreur lors de la récupération des données du compte:', error.message);
+    //             // Traitez l'erreur, affichez un message à l'utilisateur, etc.
+    //         }
+    //     };
+
+    //     fetchUserData();
+    // }); // Ajout de userId comme dépendance pour s'assurer que fetchUserData est appelée lorsque userId change
 
     return (
         <ScrollView>
@@ -43,9 +69,10 @@ const Account = () => {
                             <Text style={style.buttonTextSuppr}>Supprimer le compte</Text>
                         </TouchableOpacity>
                     </View>
+
                     <View style={style.account}>
                         <Image style={style.exchange} source={require('../assets/girl.png')} />
-                        <Text style={style.text}>Prénom</Text>
+                        <Text style={style.text}>{prenom}</Text>
                         <View style={style.inputContainer}>
                             <TextInput
                                 style={[style.input, { backgroundColor: '#fff' }]}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { ScrollView, View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { style } from '../components/registerStyle.js';
@@ -72,10 +72,11 @@ const Register = () => {
                 throw new Error(`Request failed with status ${response.status}: ${errorData.message}`);
             }
 
-            console.log('Signup successful!');
-            // Redirigez l'utilisateur ou faites autre chose après une inscription réussie
+            // console.log('Signup successful!');
+            navigation.navigate('Account');
         } catch (error) {
-            console.error('Error during signup:', error.message);
+            console.error("Erreur ", error.message);
+            Alert.alert("Erreur lors de l'inscription", "Veuillez vérifier que tous les champs sont correctement remplis 😊");
             // Affichez un message d'erreur à l'utilisateur
         }
     };
