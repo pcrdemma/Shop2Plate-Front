@@ -77,12 +77,6 @@ const ShoppingList = () => {
 
     return (
         <ScrollView contentContainerStyle={style.container}>
-            <TouchableOpacity onPress={handleBackPress} style={style.backButton}>
-                <View style={style.backButtonContent}>
-                    <Ionicons name="arrow-back" size={24} color="black" />
-                    <Text style={style.backButtonText}>Retour</Text>
-                </View>
-            </TouchableOpacity>
             <View style={style.title}>
                 <Text style={style.titleBudget}>Liste de course 🛒</Text>
             </View>

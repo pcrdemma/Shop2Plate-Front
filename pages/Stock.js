@@ -121,14 +121,12 @@ const Stock = () => {
                             <View style={style.containerOpen}>
                                 <Text style={style.date}>Ouvert le : {article.openDate}</Text>
                             </View>
-                            <View style={style.containerSecondLine}>
-                                <View style={style.containerZero}>
+                                <View style={style.containerOpen}>
                                     <Text style={style.date}>Périme le : {article.expirationDate}</Text>
                                 </View>
-                                <View style={style.containerBud}>
+                                <View style={style.containerOpen}>
                                     <Text style={style.date}>À consommer avant le : {article.expirationDate}</Text>
                                 </View>
-                            </View>
                         </View>
                     </View>
                 ))}

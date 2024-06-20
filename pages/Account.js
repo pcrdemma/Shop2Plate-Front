@@ -18,13 +18,8 @@ const Account = () => {
     const route = useRoute();
     // const { userId } = route.params; // Get the user ID from the route params
 
-
-    const handleBackPress = () => {
-        console.log('Return button pressed');
-    };
-
     const handleDeconnexion = () => {
-        console.log('Deconnexion button pressed');
+        navigation.navigate('Login');
     };
     const handleSuppr = async () => {
         try {
@@ -76,12 +71,6 @@ const Account = () => {
         <ScrollView>
             <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
                 <View style={style.container}>
-                    <TouchableOpacity onPress={handleBackPress} style={style.backButton}>
-                        <View style={style.backButtonContent}>
-                            <Ionicons name="arrow-back" size={24} color="black" />
-                            <Text style={style.backButtonText}>Retour</Text>
-                        </View>
-                    </TouchableOpacity>
                     <View style={style.containerSuppr}>
                         <TouchableOpacity style={style.buttonSuppr} onPress={handleSuppr}>
                             <Text style={style.buttonTextSuppr}>Supprimer le compte</Text>

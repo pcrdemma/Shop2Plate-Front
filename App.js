@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator();
 function TabNavigator() {
   return (
     <Tab.Navigator
-      initialRouteName="Budget"
+      initialRouteName="Account"
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarIcon: ({ focused }) => {
@@ -44,13 +44,13 @@ function TabNavigator() {
 
           return <Image source={iconSource} style={{ width: 24, height: 24 }} />;
         },
-        tabBarActiveTintColor: 'tomato',
+        tabBarActiveTintColor: '#5D9A0F',
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
           backgroundColor: '#fff',
           borderTopColor: 'transparent',
-          elevation: 0, // for Android
-          shadowOpacity: 0.3, // for iOS
+          elevation: 0,
+          shadowOpacity: 0.3, 
         },
       })}
     >
