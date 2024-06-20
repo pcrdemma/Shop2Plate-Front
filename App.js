@@ -13,7 +13,6 @@ import ShoppingList from './pages/ShoppingList';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
-
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 

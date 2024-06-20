@@ -149,11 +149,26 @@ export const style = StyleSheet.create({
         height : 40,
         justifyContent : 'center',
         borderRadius : 10,
-        width :'60%',
+        width : 180,
         alignItems : 'center',
         backgroundColor: 'rgba(132, 174, 78, 0.4)',
     },
     buttonTextDeco : {
         fontSize : 20,
+    },
+    containerSuppr : {
+        paddingTop : 40,
+        alignItems : 'flex-end',
+    },
+    buttonSuppr : {
+        height : 20,
+        justifyContent : 'center',
+        borderRadius : 7,
+        width : 140,
+        alignItems : 'center',
+        backgroundColor: 'rgba(255, 00, 0, 0.15)',
+    },
+    buttonTextSuppr : {
+        fontSize : 14,
     },
 });
