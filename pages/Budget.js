@@ -1,14 +1,22 @@
-import React from 'react';
-import { View, Text, KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { style } from '../components/budgetStyle.js';
+import AddDepense from './AddDepense';
 
 const Budget = () => {
+    const [modalVisible, setModalVisible] = useState(false);
+
     const handleBackPress = () => {
-        console.log('Return button pressed');
+        console.log('Bouton retour pressé');
     };
-    const handleAddArticle = () => {
-        console.log('Return button pressed');
+
+    const handleAddDepense = () => {
+        setModalVisible(true);
+    };
+
+    const handleCloseModal = () => {
+        setModalVisible(false);
     };
 
     const currentMonth = () => {
@@ -22,20 +30,19 @@ const Budget = () => {
             <View style={style.title}>
                 <Text style={style.titleBudget}>Budget course 💰</Text>
             </View>
-                <View style={[style.containermonth,{ flex: 1}]}>
-                    <Text style={style.month}>{currentMonth()}</Text>
-                    <View style={[style.containerProgressionBar]}>
-                        <View style={style.progressionbar}>
-                            <Text style={style.depense}>200€</Text>
-                        </View>
+            <View style={[style.containermonth, { flex: 1 }]}>
+                <Text style={style.month}>{currentMonth()}</Text>
+                <View style={[style.containerProgressionBar]}>
+                    <View style={style.progressionbar}>
+                        <Text style={style.depense}>200€</Text>
                     </View>
-                    <View style={style.containerPrice}>
-                        <View style={style.containerZero}>
-                            <Text style={style.price}>0€</Text>
-                        </View>
-                        <View style={style.containerBud}>
-                            <Text style={style.price}>400€</Text>
-                        </View>
+                </View>
+                <View style={style.containerPrice}>
+                    <View style={style.containerZero}>
+                        <Text style={style.price}>0€</Text>
+                    </View>
+                    <View style={style.containerBud}>
+                        <Text style={style.price}>400€</Text>
                     </View>
                 </View>
                 <View style={[style.containerDepenseBudget, {flex: 6}]}>
@@ -49,19 +56,27 @@ const Budget = () => {
                             </View>
                         </TouchableOpacity> 
                     </View>
-                    <View style={style.containerTemplate}>
-                        <Text style={style.dateTemplateDepense}>21 juin</Text>
-                        <View style={style.containerDepensesTemplate}>
-                            <View style={style.containerMagasin}>
-                                <Text style={style.magasin}>Carrefour</Text>
-                            </View>
-                            <View style={style.containerDepenseMagasin}>
-                                <Text style={style.depenseMagasin}>- 197,61€</Text>
-                            </View>
+                </View>
+                <View style={style.containerTemplate}>
+                    <Text style={style.dateTemplateDepense}>21 juin</Text>
+                    <View style={style.containerDepensesTemplate}>
+                        <View style={style.containerMagasin}>
+                            <Text style={style.magasin}>Carrefour</Text>
+                        </View>
+                        <View style={style.containerDepenseMagasin}>
+                            <Text style={style.depenseMagasin}>- 197,61€</Text>
                         </View>
                     </View>
                 </View>
-
+            </View>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={handleCloseModal}
+            >
+                <AddDepense onClose={handleCloseModal} />
+            </Modal>
         </ScrollView>
     );
 };

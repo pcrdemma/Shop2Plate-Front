@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { style } from '../components/stockStyle.js';
-import AddStock from './AddStock.js';
+import { style } from '../components/shoppingListStyle.js';
+import AddShoppingList from './AddShoppingList.js';
 
-const Stock = () => {
+const ShoppingList = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [articles, setArticles] = useState([
         {
             id: 1,
             name: 'Poivron',
             quantity: 2,
-            openDate: '10/06/2024',
-            expirationDate: '20/06/2024'
+            price: '5,60',
+            checked: false,
         }
     ]);
 
@@ -54,18 +54,34 @@ const Stock = () => {
         setModalVisible(false);
     };
 
-    const handleAddStock = (newArticle) => {
-        setArticles(prevArticles => [...prevArticles, newArticle]);
+    const handleAddShoppingList = (newArticle) => {
+        setArticles(prevArticles => [
+            ...prevArticles,
+            { ...newArticle, id: prevArticles.length + 1, checked: false }
+        ]);
         handleCloseModal();
     };
+
+    const handleCheckArticle = (id) => {
+        setArticles(prevArticles =>
+            prevArticles.map(article =>
+                article.id === id
+                    ? { ...article, checked: !article.checked }
+                    : article
+            )
+        );
+    };
+
+    const checkedArticlesCount = articles.filter(article => article.checked).length;
+    const progressPercentage = (checkedArticlesCount / articles.length) * 100;
 
     return (
         <ScrollView contentContainerStyle={style.container}>
             <View style={style.title}>
-                <Text style={style.titleBudget}>Stock de courses 🛒</Text>
+                <Text style={style.titleBudget}>Liste de course 🛒</Text>
             </View>
             <View style={[style.containermonth, { flex: 1 }]}>
-                <Text style={style.articleScan}>Articles ajoutés</Text>
+                <Text style={style.articleScan}>Articles achetés</Text>
                 <View style={[style.containerProgressionBar]}>
                     <View style={style.progressionbar}>
                         <Text style={style.depense}>{articles.length}</Text>
@@ -89,9 +105,11 @@ const Stock = () => {
                     <View key={article.id} style={style.containerTemplate}>
                         <View style={style.containerDepensesTemplate}>
                             <View style={style.containerFirstLine}>
-                                <View style={style.containerProduct}>
-                                    <Text style={style.articleName}>{article.name}</Text>
-                                </View>
+                                <TouchableOpacity onPress={() => handleCheckArticle(article.id)}>
+                                    <Text style={article.checked ? style.articleNameChecked : style.articleName}>
+                                        {article.name}
+                                    </Text>
+                                </TouchableOpacity>
                                 <View style={style.containerButtons}>
                                     <View style={style.containerDeleteButton}>
                                         <TouchableOpacity onPress={() => handleDelete(article.id)} style={style.deleteButton}>
@@ -119,14 +137,8 @@ const Stock = () => {
                                 </View>
                             </View>
                             <View style={style.containerOpen}>
-                                <Text style={style.date}>Ouvert le : {article.openDate}</Text>
+                                <Text style={style.date}>{article.price}€</Text>
                             </View>
-                                <View style={style.containerOpen}>
-                                    <Text style={style.date}>Périme le : {article.expirationDate}</Text>
-                                </View>
-                                <View style={style.containerOpen}>
-                                    <Text style={style.date}>À consommer avant le : {article.expirationDate}</Text>
-                                </View>
                         </View>
                     </View>
                 ))}
@@ -137,10 +149,13 @@ const Stock = () => {
                 visible={modalVisible}
                 onRequestClose={handleCloseModal}
             >
-                <AddStock onClose={handleCloseModal} onAddStock={handleAddStock} />
+                <AddShoppingList
+                    onClose={handleCloseModal}
+                    onAddShoppingList={handleAddShoppingList}
+                />
             </Modal>
         </ScrollView>
     );
 };
 
-export default Stock;
+export default ShoppingList;

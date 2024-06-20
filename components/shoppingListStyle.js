@@ -8,17 +8,73 @@ export const style = StyleSheet.create({
         paddingTop: 100,      // Centre les éléments horizontalement
         alignSelf: 'stretch',       // S'étend pour prendre toute la largeur disponible
     },
+    
+    backButtonScare: {
+        flexDirection: 'row',
+        marginTop: 50,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+    },
     backButton: {
-        paddingTop: 30,
         position: 'absolute',
         top: 20,
         left: 10,
         flexDirection: 'row',
-        alignItems: 'center'
+    },
+    backButtonContent: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    imageLogo: {
+        marginRight: 6,
     },
     backButtonText: {
-        fontSize: 20,
-        marginLeft: 10,
+        fontSize: 15,
+        color: '#000',
+    },
+    innerContainer: {
+        flex: 1,
+        top: 50,
+        alignItems: 'center',
+    },
+    shopingListContainerTitle: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+    },
+    titleList: {
+        marginTop: 20,
+        width: '100%',
+    },
+    progress: {
+        height: '100%',
+        width: '50%',
+        borderRadius: 10,
+        position: 'absolute', 
+    },
+    progresseBarContent: {
+        width: '100%',
+        height: 20,
+        backgroundColor: 'rgba(132, 174, 78, 0.15)',
+        borderRadius: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+
+    listNumber: {
+        fontSize: 15,
+        color: '#000',
+        paddingRight: 10,
+    },
+    listCuranteNumber: {
+        fontSize: 15,
+        color: '#000',
+        paddingLeft: 10,
+        justifyContent: 'flex-end',
+        width: '50%',
     },
     title: {
         alignItems : 'center',
