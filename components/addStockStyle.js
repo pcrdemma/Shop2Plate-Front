@@ -90,5 +90,21 @@ export const style = StyleSheet.create({
     },
     dureeConservationInput: {
         paddingLeft : 10        ,
-    }
+    },
+    articleQuantityInput: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginTop: 8,
+        marginBottom: 8,
+        paddingLeft: 8,
+    },
+    articlePriceInput: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginTop: 8,
+        marginBottom: 8,
+        paddingLeft: 8,
+    },
 });

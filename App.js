@@ -9,8 +9,10 @@ import Budget from './pages/Budget';
 import Welcome from './pages/Welcome';
 import Account from './pages/Account';
 import ShoppingList from './pages/ShoppingList';
+
 import Login from './pages/Login';
 import Register from './pages/Register';
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -23,7 +25,6 @@ function TabNavigator() {
         headerShown: false,
         tabBarIcon: ({ focused }) => {
           let iconSource;
-
           if (route.name === 'Budget') {
             iconSource = focused
               ? require('./assets/moneyNav.png')
