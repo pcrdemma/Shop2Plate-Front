@@ -19,12 +19,6 @@ const Budget = () => {
 
     return (
         <ScrollView contentContainerStyle={style.container}>
-            <TouchableOpacity onPress={handleBackPress} style={style.backButton}>
-                        <View style={style.backButtonContent}>
-                            <Ionicons name="arrow-back" size={24} color="black" />
-                            <Text style={style.backButtonText}>Retour</Text>
-                        </View>
-                    </TouchableOpacity>
             <View style={style.title}>
                 <Text style={style.titleBudget}>Budget course 💰</Text>
             </View>
@@ -46,14 +40,14 @@ const Budget = () => {
                 </View>
                 <View style={[style.containerDepenseBudget, {flex: 6}]}>
                     <View style={style.containerButtonDepense}>
+                        <View style={style.containerDepensesEffectues}>
+                            <Text style={style.depensesEffectues}>Dépenses effectuées</Text>
+                        </View>
                         <TouchableOpacity onPress={handleAddArticle} style={style.addArticle}>
                             <View style={style.addArticleContent}>
                                 <Text style={style.addArticleText}>Ajouter une dépense</Text>
                             </View>
                         </TouchableOpacity> 
-                        <View style={style.containerDepensesEffectues}>
-                            <Text style={style.depensesEffectues}>Dépenses effectuées</Text>
-                        </View>
                     </View>
                     <View style={style.containerTemplate}>
                         <Text style={style.dateTemplateDepense}>21 juin</Text>
