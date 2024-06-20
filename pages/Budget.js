@@ -45,16 +45,16 @@ const Budget = () => {
                         <Text style={style.price}>400€</Text>
                     </View>
                 </View>
-            </View>
-            <View style={[style.containerDepenseBudget, { flex: 6 }]}>
-                <View style={style.containerButtonDepense}>
-                    <TouchableOpacity onPress={handleAddDepense} style={style.addArticle}>
-                        <View style={style.addArticleContent}>
-                            <Text style={style.addArticleText}>Ajouter une dépense</Text>
+                <View style={[style.containerDepenseBudget, {flex: 6}]}>
+                    <View style={style.containerButtonDepense}>
+                        <View style={style.containerDepensesEffectues}>
+                            <Text style={style.depensesEffectues}>Dépenses effectuées</Text>
                         </View>
-                    </TouchableOpacity>
-                    <View style={style.containerDepensesEffectues}>
-                        <Text style={style.depensesEffectues}>Dépenses effectuées</Text>
+                        <TouchableOpacity onPress={handleAddArticle} style={style.addArticle}>
+                            <View style={style.addArticleContent}>
+                                <Text style={style.addArticleText}>Ajouter une dépense</Text>
+                            </View>
+                        </TouchableOpacity> 
                     </View>
                 </View>
                 <View style={style.containerTemplate}>
