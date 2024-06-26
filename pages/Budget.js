@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Modal } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, Image, Text, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import { style } from '../components/budgetStyle.js';
 import AddDepense from './AddDepense';
 
 const Budget = () => {
     const [modalVisible, setModalVisible] = useState(false);
+    const [depenses, setDepenses] = useState([
+        {
+            id: 1,
+            name: 'Carrefour',
+            price : -197.61,
+            date: '21/06/2024'
+        }
+    ]);
 
-    const handleBackPress = () => {
-        console.log('Bouton retour pressé');
+    const handleDelete = (id) => {
+        setDepenses(prevDepenses =>
+            prevDepenses.filter(depense => depense.id !== id)
+        );
     };
 
     const handleAddDepense = () => {
@@ -45,28 +54,38 @@ const Budget = () => {
                         <Text style={style.price}>400€</Text>
                     </View>
                 </View>
-                <View style={[style.containerDepenseBudget, {flex: 6}]}>
+                <View style={[style.containerDepenseBudget, { flex: 6 }]}>
                     <View style={style.containerButtonDepense}>
                         <View style={style.containerDepensesEffectues}>
                             <Text style={style.depensesEffectues}>Dépenses effectuées</Text>
                         </View>
-                        <TouchableOpacity onPress={handleAddArticle} style={style.addArticle}>
+                        <TouchableOpacity onPress={handleAddDepense} style={style.addArticle}>
                             <View style={style.addArticleContent}>
                                 <Text style={style.addArticleText}>Ajouter une dépense</Text>
                             </View>
-                        </TouchableOpacity> 
+                        </TouchableOpacity>
                     </View>
-                </View>
-                <View style={style.containerTemplate}>
-                    <Text style={style.dateTemplateDepense}>21 juin</Text>
-                    <View style={style.containerDepensesTemplate}>
-                        <View style={style.containerMagasin}>
-                            <Text style={style.magasin}>Carrefour</Text>
-                        </View>
-                        <View style={style.containerDepenseMagasin}>
-                            <Text style={style.depenseMagasin}>- 197,61€</Text>
+                {depenses.map((depense) => (
+                    <View style={style.containerTemplate}>
+                        <Text style={style.dateTemplateDepense}>{depense.date}</Text>
+                        <View style={style.containerDepensesTemplate}>
+                            <View style={style.containerMagasin}>
+                                <Text style={style.magasin}>{depense.name}</Text>
+                            </View>
+                            <View style={style.containerDepenseMagasin}>
+                                <View style={style.containerDeleteButton}>
+                                    <TouchableOpacity onPress={() => handleDelete(depense.id)} style={style.deleteButton}>
+                                        <Image
+                                            source={require('../assets/croix.png')}
+                                            style={style.image}
+                                        />
+                                    </TouchableOpacity>
+                                </View>
+                                <Text style={style.depenseMagasin}>{depense.price}</Text>
+                            </View>
                         </View>
                     </View>
+                ))}
                 </View>
             </View>
             <Modal
@@ -75,7 +94,10 @@ const Budget = () => {
                 visible={modalVisible}
                 onRequestClose={handleCloseModal}
             >
-                <AddDepense onClose={handleCloseModal} />
+                <AddDepense
+                    onClose={handleCloseModal}
+                    onAddDepense={handleAddDepense}
+                />
             </Modal>
         </ScrollView>
     );

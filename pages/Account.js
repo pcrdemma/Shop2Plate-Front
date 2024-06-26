@@ -4,6 +4,7 @@ import { View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity, S
 import { Ionicons } from '@expo/vector-icons';
 import { style } from '../components/accountStyle.js';
 import { RadioButton } from 'react-native-paper';
+import { getData } from '../model/AsyncStorage';
 
 const Account = () => {
     const [email, setEmail] = useState('');
@@ -13,59 +14,62 @@ const Account = () => {
     const [checked, setChecked] = useState(false);
     const [budget, setBudget] = useState('');
     const [revenu, setRevenu] = useState('');
+    const [sexe, setSexe] = useState('');
     const navigation = useNavigation();
     const [isBudgetDefiniSelected, setIsBudgetDefiniSelected] = useState(false);
     const route = useRoute();
-    // const { userId } = route.params; // Get the user ID from the route params
+    getData('userId').then(value => {
+        userId = value;
+    });
 
     const handleDeconnexion = () => {
         navigation.navigate('Login');
     };
     const handleSuppr = async () => {
-        try {
-            const response = await fetch('https://shop2plate-back.onrender.com/users/deleteUser', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ id: userId }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Erreur lors de la suppression du compte');
-            }
-
-            Alert.alert('Succès', 'Compte supprimé avec succès', [
-                { text: 'OK', onPress: () => navigation.navigate('Register') },
-            ]);
-        } catch (error) {
-            console.error('Erreur lors de la suppression du compte:', error.message);
-            Alert.alert('Erreur', 'Une erreur est survenue lors de la suppression du compte');
-        }
+        fetch(`https://shop2plate-back.onrender.com/users/deleteUser/${userId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: userId }),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la suppression du compte');
+                }
+                navigation.navigate('Register');
+            })
+            .catch(error => {
+                console.error('Erreur lors de la suppression du compte:', error.message);
+                // Traitez l'erreur, affichez un message à l'utilisateur, etc.
+            });        
     };
 
-    // useEffect(() => {
-    //     const fetchUserData = async () => {
-    //         try {
-    //             // Effectuer une requête pour récupérer les données du compte en utilisant l'ID de l'utilisateur
-    //             const response = await fetch(`https://shop2plate-back.onrender.com/users/user/${userId}`);
-    //             if (!response.ok) {
-    //                 throw new Error('Erreur lors de la récupération des données du compte');
-    //             }
-    //             const userData = await response.json();
-    //             // Mettre à jour le state avec les données récupérées
-    //             setEmail(userData.email);
-    //             setPrenom(userData.prenom);
-    //             setBudget(userData.budget);
-    //             setRevenu(userData.revenu);
-    //         } catch (error) {
-    //             console.error('Erreur lors de la récupération des données du compte:', error.message);
-    //             // Traitez l'erreur, affichez un message à l'utilisateur, etc.
-    //         }
-    //     };
+    useEffect(() => {
+        const fetchUserData = async () => {
+            fetch(`https://shop2plate-back.onrender.com/users/user/${userId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erreur lors de la récupération des données du compte');
+                    }
+                    return response.json();
+                })
+                .then(userData => {
+                    console.log(userData);
+                    setEmail(userData.email);
+                    setPrenom(userData.firstname);
+                    setBudget(userData.price);
+                    setRevenu(userData.price);
+                    setSexe(userData.sexe);
+                })
+                .catch(error => {
+                    console.error('Erreur lors de la récupération des données du compte:', error.message);
+                    // Traitez l'erreur, affichez un message à l'utilisateur, etc.
+                });
+        };
 
-    //     fetchUserData();
-    // }); // Ajout de userId comme dépendance pour s'assurer que fetchUserData est appelée lorsque userId change
+        fetchUserData();
+    }); // Ajout de userId comme dépendance pour s'assurer que fetchUserData est appelée lorsque userId change
 
     return (
         <ScrollView>
@@ -78,7 +82,14 @@ const Account = () => {
                     </View>
 
                     <View style={style.account}>
-                        <Image style={style.exchange} source={require('../assets/girl.png')} />
+                        <Image
+                            style={style.exchange}
+                            source={
+                                sexe === true
+                                    ? require('../assets/girl.png')
+                                    : require('../assets/boy.png') // Remplacez par le chemin de l'image pour un autre sexe
+                            }
+                        />
                         <Text style={style.text}>{prenom}</Text>
                         <View style={style.inputContainer}>
                             <TextInput

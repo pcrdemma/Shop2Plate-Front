@@ -69,9 +69,10 @@ export const style = StyleSheet.create({
         justifyContent: 'flex-end', // Alignement à droite
     },
     depensesEffectues: {
-        paddingRight : '5%',
+        paddingRight : '3%',
+        marginRight : '-3%',
         color : '#727272',
-        fontSize : 18,
+        fontSize : 16,
     },
     containerTemplate: {
         padding : '5%',
@@ -84,7 +85,7 @@ export const style = StyleSheet.create({
     containerDepensesTemplate: {
         backgroundColor : '#FAFAFA',
         borderRadius : 10,
-        height : 40,
+        height : 60,
         alignItems : 'center',
         padding : 10,
         flexDirection: 'row', 
@@ -102,5 +103,10 @@ export const style = StyleSheet.create({
         backgroundColor : "rgba(132, 174, 78, 0.15)",
         padding : 8,
         borderRadius : 12,
+    },
+    containerDeleteButton: {
+        paddingBottom : 10,
+        alignItems : 'flex-end',
+        width: '100%',
     }
 });

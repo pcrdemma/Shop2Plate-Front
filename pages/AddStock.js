@@ -3,7 +3,8 @@ import { View, Text, TouchableOpacity, Modal, Image, TextInput, Button } from 'r
 import { style } from '../components/addStockStyle.js';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const AddStock = ({ onClose }) => {
+const AddStock = ({ onClose, onAddStock }) => {
+    const [articleQuantity, setArticleQuantity] = useState('');
     const [expirationDate, setExpirationDate] = useState(null);
     const [openDate, setOpenDate] = useState(null);
     const [showDatePicker, setShowDatePicker] = useState(false);
@@ -34,8 +35,14 @@ const AddStock = ({ onClose }) => {
     };
 
     const handleAddStock = () => {
-        console.log('Add stock button has been pressed');
-        onClose();  
+        const newArticle = {
+            name: articleTitle,
+            quantity: parseInt(articleQuantity),
+            expirationDate: expirationDate,
+            openDate: openDate,
+            dureeConservation: dureeConservation
+        };
+        onAddStock(newArticle);  
     };
 
     return (
@@ -64,6 +71,14 @@ const AddStock = ({ onClose }) => {
                             placeholderTextColor="#888888"
                             value={articleTitle}
                             onChangeText={setArticleTitle}
+                        />
+                        <TextInput
+                            style={style.articleQuantityInput}
+                            placeholder="Quantité"
+                            placeholderTextColor="#888888"
+                            keyboardType="numeric"
+                            value={articleQuantity}
+                            onChangeText={setArticleQuantity}
                         />
                     </View>
                     <View style={style.peremptionScare}>

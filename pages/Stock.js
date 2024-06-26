@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity, Modal } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { style } from '../components/stockStyle.js';
 import AddStock from './AddStock.js';
 
@@ -15,10 +14,6 @@ const Stock = () => {
             expirationDate: '20/06/2024'
         }
     ]);
-
-    const handleBackPress = () => {
-        console.log('Bouton retour pressé');
-    };
 
     const handleMoinsPress = (id) => {
         setArticles(prevArticles =>
@@ -121,12 +116,12 @@ const Stock = () => {
                             <View style={style.containerOpen}>
                                 <Text style={style.date}>Ouvert le : {article.openDate}</Text>
                             </View>
-                                <View style={style.containerOpen}>
-                                    <Text style={style.date}>Périme le : {article.expirationDate}</Text>
-                                </View>
-                                <View style={style.containerOpen}>
-                                    <Text style={style.date}>À consommer avant le : {article.expirationDate}</Text>
-                                </View>
+                            <View style={style.containerOpen}>
+                                <Text style={style.date}>Périme le : {article.expirationDate}</Text>
+                            </View>
+                            <View style={style.containerOpen}>
+                                <Text style={style.date}>À consommer avant le : {article.expirationDate}</Text>
+                            </View>
                         </View>
                     </View>
                 ))}
@@ -137,7 +132,10 @@ const Stock = () => {
                 visible={modalVisible}
                 onRequestClose={handleCloseModal}
             >
-                <AddStock onClose={handleCloseModal} onAddStock={handleAddStock} />
+                <AddStock
+                    onClose={handleCloseModal}
+                    onAddStock={handleAddStock}
+                />
             </Modal>
         </ScrollView>
     );

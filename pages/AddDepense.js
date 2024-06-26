@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Modal, Image, TextInput } from 'react-nat
 import { style } from '../components/addDepenseStyle.js';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const AddDepense = ({ onClose }) => {
+const AddDepense = ({ onClose, onAddDepense }) => {
     const [depenseDate, setDepenseDate] = useState(new Date());
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [depenseTitle, setDepenseTitle] = useState('');
@@ -25,8 +25,12 @@ const AddDepense = ({ onClose }) => {
     };
 
     const handleAddDepense = () => {
-        console.log('Add depense button has been pressed');
-        onClose();  
+        const newDepense = {
+            name: depenseTitle,
+            price: montantTitle,
+            date: depenseDate
+        };
+        onAddDepense(newDepense);  
     };
 
     return (

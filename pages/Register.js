@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { ScrollView, View, Text, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { style } from '../components/registerStyle.js';
 import { RadioButton } from 'react-native-paper';
+import { storeData } from '../model/AsyncStorage.js';
 
 const Register = () => {
     const [selectedImage, setSelectedImage] = useState(require('../assets/girl.png'));
@@ -25,22 +25,31 @@ const Register = () => {
     const navigation = useNavigation();
 
     const handleLogin = async () => {
-        try {
-            const sexe = isMale;
-            let budgetValue = parseFloat(budget);
-    
-            // Appliquez la réduction si le budget est calculé
-            if (checked) {
-                budgetValue *= 0.82;
-            }
-    
-            // Vérifiez que le budget est un nombre valide
-            if (isNaN(budgetValue) || budgetValue <= 0) {
-                throw new Error("Le budget est invalide");
-            }
-    
-            // Log the data being sent for debugging
-            console.log({
+        const sexe = isMale;
+        let budgetValue = parseFloat(budget);
+        if (checked) {
+            budgetValue *= 0.82;
+        }
+        if (isNaN(budgetValue) || budgetValue <= 0) {
+            throw new Error("Le budget est invalide");
+        }
+
+        console.log({
+            firstname: prenom,
+            lastname: name,
+            email,
+            password,
+            sexe,
+            price: budgetValue,
+            isChecked: checked
+        });
+
+        fetch('https://shop2plate-back.onrender.com/users/addUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
                 firstname: prenom,
                 lastname: name,
                 email,
@@ -48,41 +57,32 @@ const Register = () => {
                 sexe,
                 price: budgetValue,
                 isChecked: checked
+            }),
+        })
+            .then(response => {
+                if (response.status === 404) {
+                    throw new Error('Ressource non trouvée');
+                }
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error(text) });
+                }
+                console.log(response);
+                return response.json();
+            })
+            .then(data => {
+                // Vérifiez si l'utilisateur a été ajouté avec succès
+                if (data.success) {
+                    // Optionnel : Enregistrez l'utilisateur dans AsyncStorage (ou autre solution de stockage)
+                    storeData('userId', data.user.id.toString());
+                    navigation.navigate('Account');
+                } else {
+                    throw new Error(data.message || 'Erreur lors de l\'inscription');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de l\'inscription:', error);
+                Alert.alert('Erreur lors de l\'inscription', error.message || 'Veuillez réessayer plus tard');
             });
-    
-            const response = await fetch('https://shop2plate-back.onrender.com/users/addUser', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    firstname: prenom,
-                    lastname: name,
-                    email,
-                    password,
-                    sexe,
-                    price: budgetValue,
-                    isChecked: checked
-                }),
-            });
-    
-            if (!response.ok) {
-                // If the response status is not OK (e.g., 400 or 500), throw an error
-                const errorData = await response.json();
-                throw new Error(`Request failed with status ${response.status}: ${errorData.message}`);
-            }
-
-            // console.log('Signup successful!');
-            navigation.navigate('Account');
-        } catch (error) {
-            console.error("Erreur ", error.message);
-            Alert.alert("Erreur lors de l'inscription", "Veuillez vérifier que tous les champs sont correctement remplis 😊");
-            // Affichez un message d'erreur à l'utilisateur
-        }
-    };
-
-    const handleBackPress = () => {
-        console.log('Return button pressed');
     };
 
     const handleChangePhoto = () => {
@@ -194,27 +194,27 @@ const Register = () => {
                                 )}
                             </View>
                             {!checked ? (
-                            <View style={style.budgetdefined}>
-                                <View style={style.twoRectangle}>
-                                    <View style={style.rectangleRevenu}>
-                                        <View style={style.containerInputMax}>
-                                            <TextInput
-                                                style={[style.inputRevenu, { backgroundColor: '#fff' }]}
-                                                placeholder="Revenu mensuel"
-                                                onChangeText={setBudget}
-                                                value={budget}
-                                                keyboardType="numeric"
-                                                autoCapitalize="none"
-                                            />
+                                <View style={style.budgetdefined}>
+                                    <View style={style.twoRectangle}>
+                                        <View style={style.rectangleRevenu}>
+                                            <View style={style.containerInputMax}>
+                                                <TextInput
+                                                    style={[style.inputRevenu, { backgroundColor: '#fff' }]}
+                                                    placeholder="Revenu mensuel"
+                                                    onChangeText={setBudget}
+                                                    value={budget}
+                                                    keyboardType="numeric"
+                                                    autoCapitalize="none"
+                                                />
+                                            </View>
                                         </View>
-                                    </View>
-                                    <View style={style.rectangleRevenu}>
-                                        <View style={style.containerInputMax}>
-                                            <Text>Revenu x 0,82</Text>
+                                        <View style={style.rectangleRevenu}>
+                                            <View style={style.containerInputMax}>
+                                                <Text>Revenu x 0,82</Text>
+                                            </View>
                                         </View>
                                     </View>
                                 </View>
-                            </View>
                             ) : null}
                         </View>
                         <TouchableOpacity style={style.button} onPress={handleLogin}>

@@ -15,11 +15,6 @@ const ShoppingList = () => {
             checked: false,
         }
     ]);
-
-    const handleBackPress = () => {
-        console.log('Bouton retour pressé');
-    };
-
     const handleMoinsPress = (id) => {
         setArticles(prevArticles =>
             prevArticles.map(article =>
