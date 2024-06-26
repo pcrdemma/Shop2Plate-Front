@@ -5,8 +5,8 @@ export const style = StyleSheet.create({
         backgroundColor : 'white',
         flex: 1,
         padding : 20,
-        paddingTop: 100,      // Centre les éléments horizontalement
-        alignSelf: 'stretch',       // S'étend pour prendre toute la largeur disponible
+        paddingTop: 100,     
+        alignSelf: 'stretch',      
     },
     
     backButtonScare: {
@@ -85,7 +85,7 @@ export const style = StyleSheet.create({
     containermonth: {
         paddingTop : 30,
         width : '90%',
-        alignSelf: 'center',   // Alignez à gauche
+        alignSelf: 'center', 
     },
     containerProgressionBar: {
         width : '100%',
@@ -96,7 +96,7 @@ export const style = StyleSheet.create({
     },
     progressionbar: {
         alignItems : 'flex-end',
-        width : '50%', //modifier la width en fonction des dépenses en back
+        width : '50%',
         padding : 5,
         height : 25,
         borderRadius : 20,

@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { View, Image } from 'react-native';
+import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Ionicons } from '@expo/vector-icons';
 import Stock from './pages/Stock';
 import Budget from './pages/Budget';
 import Welcome from './pages/Welcome';
@@ -49,8 +48,8 @@ function TabNavigator() {
         tabBarStyle: {
           backgroundColor: '#fff',
           borderTopColor: 'transparent',
-          elevation: 0, // for Android
-          shadowOpacity: 0.3, // for iOS
+          elevation: 0,
+          shadowOpacity: 0.3, 
         },
       })}
     >

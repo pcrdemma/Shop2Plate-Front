@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Sauvegarder une donnée
 export const storeData = async (key, value) => {
   try {
     await AsyncStorage.setItem(key, value);
@@ -9,7 +8,6 @@ export const storeData = async (key, value) => {
   }
 };
 
-// Lire une donnée
 export const getData = async (key) => {
   try {
     const value = await AsyncStorage.getItem(key);

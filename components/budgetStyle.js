@@ -66,7 +66,7 @@ export const style = StyleSheet.create({
     },
     progressionbar: {
         alignItems: 'flex-end',
-        width: '50%', //modifier la width en fonction des dépenses en back
+        width: '50%',
         padding: 5,
         height: 25,
         borderRadius: 20,

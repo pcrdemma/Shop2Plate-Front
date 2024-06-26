@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity, Modal } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { style } from '../components/shoppingListStyle.js';
 import AddShoppingList from './AddShoppingList.js';
 

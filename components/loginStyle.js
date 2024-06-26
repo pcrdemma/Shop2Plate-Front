@@ -16,12 +16,12 @@ export const style = StyleSheet.create({
     },
     imageContainer: {
         marginTop: 50,
-        alignItems: 'center', // Centrer horizontalement
-        justifyContent: 'center', // Centrer verticalement
+        alignItems: 'center', 
+        justifyContent: 'center', 
     },
     shoppingBag: {
-        width: 220, // Largeur de l'image en pixels
-        height: 220, // Hauteur de l'image en pixels
+        width: 220, 
+        height: 220, 
     },
     inputContainer: {
         alignItems:'center',

@@ -25,7 +25,6 @@ const Login = ({ route }) => {
                 if (!response.ok) {
                     return response.text().then(text => { throw new Error(text) });
                 }
-                console.log(response);
                 return response.json();
 
             })

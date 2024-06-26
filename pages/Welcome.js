@@ -13,7 +13,7 @@ const Welcome = () => {
       fadeAnim,
       {
         toValue: 1,
-        duration: 1200, // Durée de l'animation en milliseconds
+        duration: 1200,
         useNativeDriver: true,
       }
     ).start();
@@ -22,7 +22,7 @@ const Welcome = () => {
       navigation.navigate('Login');
     }, 2000); 
 
-    return () => clearTimeout(timer); // Clear the timer if component unmounts
+    return () => clearTimeout(timer); 
   }, [navigation]);
 
   const handleScrollToEnd = () => {

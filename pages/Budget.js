@@ -32,10 +32,10 @@ const Budget = () => {
     const currentMonth = () => {
         const date = new Date();
         const month = date.toLocaleString('fr-FR', { month: 'long' });
-        return month.charAt(0).toUpperCase() + month.slice(1); // Capitalise le premier caractère
+        return month.charAt(0).toUpperCase() + month.slice(1); 
     };
 
-    const totalBudget = 400; // Exemple de budget total
+    const totalBudget = 400;
     const totalSpent = depenses.reduce((sum, depense) => sum + depense.price, 0);
     const progressPercentage = (totalSpent / totalBudget) * 100;
 

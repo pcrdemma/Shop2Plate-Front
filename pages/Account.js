@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { style } from '../components/accountStyle.js';
 import { RadioButton } from 'react-native-paper';
 import { getData } from '../model/AsyncStorage';
@@ -41,7 +40,6 @@ const Account = () => {
             })
             .catch(error => {
                 console.error('Erreur lors de la suppression du compte:', error.message);
-                // Traitez l'erreur, affichez un message à l'utilisateur, etc.
             });        
     };
 
@@ -64,12 +62,11 @@ const Account = () => {
                 })
                 .catch(error => {
                     console.error('Erreur lors de la récupération des données du compte:', error.message);
-                    // Traitez l'erreur, affichez un message à l'utilisateur, etc.
                 });
         };
 
         fetchUserData();
-    }); // Ajout de userId comme dépendance pour s'assurer que fetchUserData est appelée lorsque userId change
+    }); 
 
     return (
         <ScrollView>
@@ -87,7 +84,7 @@ const Account = () => {
                             source={
                                 sexe === true
                                     ? require('../assets/girl.png')
-                                    : require('../assets/boy.png') // Remplacez par le chemin de l'image pour un autre sexe
+                                    : require('../assets/boy.png') 
                             }
                         />
                         <Text style={style.text}>{prenom}</Text>

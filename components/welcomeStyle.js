@@ -4,7 +4,6 @@ export const style = StyleSheet.create({
 
     scrollViewContainer: {
         flexGrow: 1,
-        // backgroundColor: 'rgba(0, 0, 0, 0.3)',
       },
 
     container: {

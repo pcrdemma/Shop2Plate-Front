@@ -66,13 +66,10 @@ const Register = () => {
                 if (!response.ok) {
                     return response.text().then(text => { throw new Error(text) });
                 }
-                console.log(response);
                 return response.json();
             })
             .then(data => {
-                // Vérifiez si l'utilisateur a été ajouté avec succès
                 if (data.success) {
-                    // Optionnel : Enregistrez l'utilisateur dans AsyncStorage (ou autre solution de stockage)
                     storeData('userId', data.user.id.toString());
                     navigation.navigate('Account');
                 } else {

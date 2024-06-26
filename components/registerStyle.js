@@ -18,12 +18,12 @@ export const style = StyleSheet.create({
         zIndex: 1,
     },
     backButtonContent: {
-        flexDirection: 'row', // Alignement horizontal des éléments
-        alignItems: 'center', // Alignement vertical des éléments
+        flexDirection: 'row', 
+        alignItems: 'center', 
     },
     backButtonText: {
         fontSize: 20,
-        marginLeft: 10, // Espacement entre l'icône et le texte
+        marginLeft: 10, 
     },
     text: {
         fontSize: 48,
@@ -37,12 +37,12 @@ export const style = StyleSheet.create({
     },
     imageContainer: {
         marginTop: 50,
-        alignItems: 'center', // Centrer horizontalement
-        justifyContent: 'center', // Centrer verticalement
+        alignItems: 'center', 
+        justifyContent: 'center', 
     },
     shoppingBag: {
-        width: 220, // Largeur de l'image en pixels
-        height: 220, // Hauteur de l'image en pixels
+        width: 220, 
+        height: 220,
     },
     inputContainer: {
         alignItems:'center',
@@ -96,13 +96,13 @@ export const style = StyleSheet.create({
     },
     containerCheckbox: {
         width: '100%',
-        justifyContent: 'flex-start', // Aligner les éléments au début de l'axe principal (à gauche)
+        justifyContent: 'flex-start', 
     },
     checkboxContainer: {
         zIndex : 1,
         flexDirection: 'row',
         alignItems: 'center',
-        alignSelf: 'flex-start', // Aligner la checkboxContainer au début de l'axe croisé (en haut)
+        alignSelf: 'flex-start', 
     },
     checkboxLabel: {
         fontSize: 16,
@@ -118,14 +118,14 @@ export const style = StyleSheet.create({
         padding: '4%',
         borderRadius : 10,
         backgroundColor: '#fff',
-        shadowColor: '#000', // Couleur de l'ombre
+        shadowColor: '#000', 
         shadowOffset: {
             width: 0,
             height: 2,
         },
-        shadowOpacity: 0.25, // Opacité de l'ombre
-        shadowRadius: 3.84, // Rayon de l'ombre
-        elevation: 5, // Élévation pour Android
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84, 
+        elevation: 5, 
     },
     containerMax : {
         justifyContent : 'flex-start',
@@ -168,14 +168,14 @@ export const style = StyleSheet.create({
         padding: '4%',
         borderRadius : 10,
         backgroundColor: '#fff',
-        shadowColor: '#000', // Couleur de l'ombre
+        shadowColor: '#000', 
         shadowOffset: {
             width: 0,
             height: 2,
         },
-        shadowOpacity: 0.25, // Opacité de l'ombre
-        shadowRadius: 3.84, // Rayon de l'ombre
-        elevation: 5, // Élévation pour Android
+        shadowOpacity: 0.25, 
+        shadowRadius: 3.84, 
+        elevation: 5, 
     },
 
     twoRectangle : {
