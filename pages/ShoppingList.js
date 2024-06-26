@@ -6,15 +6,7 @@ import AddShoppingList from './AddShoppingList.js';
 
 const ShoppingList = () => {
     const [modalVisible, setModalVisible] = useState(false);
-    const [articles, setArticles] = useState([
-        {
-            id: 1,
-            name: 'Poivron',
-            quantity: 2,
-            price: '5,60',
-            checked: false,
-        }
-    ]);
+    const [articles, setArticles] = useState([]);
     const handleMoinsPress = (id) => {
         setArticles(prevArticles =>
             prevArticles.map(article =>
@@ -77,22 +69,27 @@ const ShoppingList = () => {
             </View>
             <View style={[style.containermonth, { flex: 1 }]}>
                 <Text style={style.articleScan}>Articles achetés</Text>
-                <View style={[style.containerProgressionBar]}>
-                    <View style={style.progressionbar}>
-                        <Text style={style.depense}>{articles.length}</Text>
-                    </View>
+                <View style={style.progresseBarContent}>
+                    <View
+                        style={[
+                            style.progress,
+                            {
+                                width: `${progressPercentage}%`,
+                                backgroundColor: `rgba(132, 174, 78, ${progressPercentage / 100})`,
+                            },
+                        ]}
+                    />
+                    <Text style={style.listCuranteNumber}>{checkedArticlesCount}</Text>
+                    <Text style={style.listNumber}>{articles.length}</Text>
                 </View>
-                <View style={style.containerPrice}>
-                    <View style={style.containerZero}>
-                        <Text style={style.unite}>0</Text>
-                    </View>
-                </View>
+                
             </View>
             <View style={[style.containerDepenseBudget, { flex: 6 }]}>
                 <View style={style.containerButtonDepense}>
                     <TouchableOpacity onPress={handleAddArticle} style={style.addArticle}>
                         <View style={style.addArticleContent}>
                             <Text style={style.addArticleText}>Ajouter un article</Text>
+                            
                         </View>
                     </TouchableOpacity>
                 </View>

@@ -5,15 +5,7 @@ import AddStock from './AddStock.js';
 
 const Stock = () => {
     const [modalVisible, setModalVisible] = useState(false);
-    const [articles, setArticles] = useState([
-        {
-            id: 1,
-            name: 'Poivron',
-            quantity: 2,
-            openDate: '10/06/2024',
-            expirationDate: '20/06/2024'
-        }
-    ]);
+    const [articles, setArticles] = useState([]);
 
     const handleMoinsPress = (id) => {
         setArticles(prevArticles =>

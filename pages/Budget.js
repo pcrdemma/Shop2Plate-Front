@@ -5,14 +5,7 @@ import AddDepense from './AddDepense';
 
 const Budget = () => {
     const [modalVisible, setModalVisible] = useState(false);
-    const [depenses, setDepenses] = useState([
-        {
-            id: 1,
-            name: 'Carrefour',
-            price : -197.61,
-            date: '21/06/2024'
-        }
-    ]);
+    const [depenses, setDepenses] = useState([]);
 
     const handleDelete = (id) => {
         setDepenses(prevDepenses =>
@@ -28,11 +21,23 @@ const Budget = () => {
         setModalVisible(false);
     };
 
+    const handleAddNewDepense = (newDepense) => {
+        setDepenses(prevDepenses => [
+            ...prevDepenses,
+            { ...newDepense, id: prevDepenses.length + 1 }
+        ]);
+        handleCloseModal();
+    };
+
     const currentMonth = () => {
         const date = new Date();
         const month = date.toLocaleString('fr-FR', { month: 'long' });
         return month.charAt(0).toUpperCase() + month.slice(1); // Capitalise le premier caractère
     };
+
+    const totalBudget = 400; // Exemple de budget total
+    const totalSpent = depenses.reduce((sum, depense) => sum + depense.price, 0);
+    const progressPercentage = (totalSpent / totalBudget) * 100;
 
     return (
         <ScrollView contentContainerStyle={style.container}>
@@ -41,32 +46,33 @@ const Budget = () => {
             </View>
             <View style={[style.containermonth, { flex: 1 }]}>
                 <Text style={style.month}>{currentMonth()}</Text>
-                <View style={[style.containerProgressionBar]}>
-                    <View style={style.progressionbar}>
-                        <Text style={style.depense}>200€</Text>
-                    </View>
+                <View style={style.progresseBarContent}>
+                    <View
+                        style={[
+                            style.progress,
+                            {
+                                width: `${progressPercentage}%`,
+                                backgroundColor: `rgba(132, 174, 78, ${progressPercentage / 100})`,
+                            },
+                        ]}
+                    />
+                    <Text style={style.listCuranteNumber}>{totalSpent.toFixed(2)}€</Text>
+                    <Text style={style.listNumber}>{totalBudget}€</Text>
                 </View>
-                <View style={style.containerPrice}>
-                    <View style={style.containerZero}>
-                        <Text style={style.price}>0€</Text>
+            </View>
+            <View style={[style.containerDepenseBudget, { flex: 6 }]}>
+                <View style={style.containerButtonDepense}>
+                    <View style={style.containerDepensesEffectues}>
+                        <Text style={style.depensesEffectues}>Dépenses effectuées</Text>
                     </View>
-                    <View style={style.containerBud}>
-                        <Text style={style.price}>400€</Text>
-                    </View>
-                </View>
-                <View style={[style.containerDepenseBudget, { flex: 6 }]}>
-                    <View style={style.containerButtonDepense}>
-                        <View style={style.containerDepensesEffectues}>
-                            <Text style={style.depensesEffectues}>Dépenses effectuées</Text>
+                    <TouchableOpacity onPress={handleAddDepense} style={style.addArticle}>
+                        <View style={style.addArticleContent}>
+                            <Text style={style.addArticleText}>Ajouter une dépense</Text>
                         </View>
-                        <TouchableOpacity onPress={handleAddDepense} style={style.addArticle}>
-                            <View style={style.addArticleContent}>
-                                <Text style={style.addArticleText}>Ajouter une dépense</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                    </TouchableOpacity>
+                </View>
                 {depenses.map((depense) => (
-                    <View style={style.containerTemplate}>
+                    <View key={depense.id} style={style.containerTemplate}>
                         <Text style={style.dateTemplateDepense}>{depense.date}</Text>
                         <View style={style.containerDepensesTemplate}>
                             <View style={style.containerMagasin}>
@@ -81,12 +87,11 @@ const Budget = () => {
                                         />
                                     </TouchableOpacity>
                                 </View>
-                                <Text style={style.depenseMagasin}>{depense.price}</Text>
+                                <Text style={style.depenseMagasin}>{depense.price}€</Text>
                             </View>
                         </View>
                     </View>
                 ))}
-                </View>
             </View>
             <Modal
                 animationType="slide"
@@ -96,7 +101,7 @@ const Budget = () => {
             >
                 <AddDepense
                     onClose={handleCloseModal}
-                    onAddDepense={handleAddDepense}
+                    onAddDepense={handleAddNewDepense}
                 />
             </Modal>
         </ScrollView>
