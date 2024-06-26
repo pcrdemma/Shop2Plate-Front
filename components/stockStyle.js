@@ -8,6 +8,34 @@ export const style = StyleSheet.create({
         paddingTop: 100,      // Centre les éléments horizontalement
         alignSelf: 'stretch',       // S'étend pour prendre toute la largeur disponible
     },
+    progress: {
+        height: '100%',
+        width: '50%',
+        borderRadius: 10,
+        position: 'absolute', 
+    },
+    progresseBarContent: {
+        width: '100%',
+        height: 20,
+        backgroundColor: 'rgba(132, 174, 78, 0.15)',
+        borderRadius: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+
+    listNumber: {
+        fontSize: 15,
+        color: '#000',
+        paddingRight: 10,
+    },
+    listCuranteNumber: {
+        fontSize: 15,
+        color: '#000',
+        paddingLeft: 10,
+        justifyContent: 'flex-end',
+        width: '50%',
+    },
     backButton: {
         paddingTop: 30,
         position: 'absolute',
